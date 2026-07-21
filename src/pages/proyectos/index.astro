@@ -1,0 +1,4 @@
+﻿---
+import { getCollection } from 'astro:content'; import BaseLayout from '../../layouts/BaseLayout.astro'; import PageHero from '../../components/common/PageHero.astro'; import EmptyState from '../../components/common/EmptyState.astro'; import { withBase } from '../../utils/paths'; const entries=await getCollection('projects');
+---
+<BaseLayout title="Proyectos | PI-ENSA"><PageHero title="Proyectos"/><section class="section"><div class="container grid gap-6 md:grid-cols-3">{entries.length ? entries.map((entry)=><article class="rounded-2xl border p-6"><h2><a href={withBase(`/proyectos/${entry.id}/`)}>{entry.data.title}</a></h2><p>{entry.data.summary}</p></article>) : <EmptyState title="AÃºn no hay proyectos publicados"/>}</div></section></BaseLayout>

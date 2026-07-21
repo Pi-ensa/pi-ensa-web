@@ -1,0 +1,5 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://pi-ensa.github.io/pi-ensa-web/sitemap-index.xml
+
