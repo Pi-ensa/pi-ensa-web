@@ -8,6 +8,8 @@ Edita los valores de esta tabla cuando cambie la convocatoria.
 
 | Campo                        | Valor                       |
 | ---------------------------- | --------------------------- |
+| Periodo de talleres             | Primavera 2026              |
+| Periodo de agenda               | FEBRERO-MAYO 2026          |
 | Estado                       | Inscripciones cerradas      |
 | Inscripciones                | 11 al 13 de febrero de 2026 |
 | Inscripciones extemporáneas | 16 al 20 de febrero de 2026 |

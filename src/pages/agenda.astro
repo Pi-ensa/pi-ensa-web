@@ -1,4 +1,41 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/common/PageHero.astro'; import { workshopSchedule2026 } from '../data/site-data';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/common/PageHero.astro';
+import { registrationBanner } from '../utils/workshop-offer';
+import { agendaSettings, workshopAgenda } from '../utils/workshop-agenda';
 ---
-<BaseLayout title="Agenda de talleres 2026 | PI-ENSA" description="Fechas de los ocho talleres PI-ENSA programados entre febrero y mayo de 2026."><PageHero eyebrow="Febrero–mayo de 2026" title="Agenda de talleres" description="Fechas de los ocho bloques de talleres, organizadas por el día de asistencia de cada grupo."/><section class="section"><div class="container"><div class="notice mb-8"><strong>Periodo concluido.</strong> Esta agenda corresponde al ciclo 2026 y se conserva como referencia. Las fechas exactas variaron según el día asignado a cada grupo.</div><div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{workshopSchedule2026.map((group)=><article class="card"><p class="eyebrow">Grupo</p><h2 class="mt-2 text-2xl font-extrabold">{group.day}</h2><ol class="schedule-list">{group.sessions.map((session)=><li>{session}</li>)}</ol></article>)}</div><p class="mt-8 text-sm text-[var(--muted)]">El calendario contempló pausas por ExpoUDLAP, Semana Santa, Pascua y días sin actividad.</p></div></section></BaseLayout>
+
+<BaseLayout title="Agenda | PI-ENSA" description="Consulta las fechas y horarios de los talleres PI-ENSA.">
+  <PageHero
+    eyebrow={registrationBanner.agendaPeriod}
+    title="Agenda de talleres"
+    description="Consulta las fechas y horarios publicados para cada grupo."
+  />
+  <section class="section">
+    <div class="container">
+      {
+        agendaSettings.showSchedule ? (
+          <>
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {workshopAgenda.map((group) => (
+                <article class="card">
+                  <p class="eyebrow">Grupo</p>
+                  <h2 class="mt-2 text-2xl font-extrabold">{group.day}</h2>
+                  {group.time && group.time.toLocaleLowerCase('es') !== 'por confirmar' && (
+                    <p class="mt-2 font-semibold text-[var(--primary)]">{group.time}</p>
+                  )}
+                  <ol class="schedule-list">
+                    {group.sessions.map((session) => <li>{session}</li>)}
+                  </ol>
+                </article>
+              ))}
+            </div>
+            {agendaSettings.note && <p class="mt-8 text-sm text-[var(--muted)]">{agendaSettings.note}</p>}
+          </>
+        ) : (
+          <div class="notice"><strong>{agendaSettings.alternateMessage}</strong></div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

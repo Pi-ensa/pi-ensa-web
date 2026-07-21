@@ -1,6 +1,8 @@
 import source from '../data/oferta-talleres.md?raw';
 
 export interface RegistrationBanner {
+  workshopPeriod: string;
+  agendaPeriod: string;
   status: string;
   registrationDates: string;
   lateRegistration: string;
@@ -20,7 +22,7 @@ function parseRow(line: string) {
   return line.split('|').slice(1, -1).map((cell) => cell.trim());
 }
 
-function tableRows(markdown: string, firstColumn: string) {
+export function tableRows(markdown: string, firstColumn: string) {
   const lines = markdown.split(/\r?\n/);
   const headerIndex = lines.findIndex((line) =>
     new RegExp(`^\\|\\s*${firstColumn}\\s*\\|`, 'i').test(line),
@@ -43,6 +45,8 @@ function parseRegistrationBanner(markdown: string): RegistrationBanner {
   );
 
   return {
+    workshopPeriod: fields['periodo de talleres'] || 'Periodo por confirmar',
+    agendaPeriod: fields['periodo de agenda'] || 'PERIODO POR CONFIRMAR',
     status: fields.estado || 'Estado por confirmar',
     registrationDates: fields.inscripciones || 'Fechas por confirmar',
     lateRegistration: fields['inscripciones extemporáneas'] || 'Fecha por confirmar',

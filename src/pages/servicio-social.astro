@@ -1,43 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/common/PageHero.astro';
-
-const processDates = [
-  { date: '23 de enero', title: 'Sesión informativa', description: 'Presentación en línea del programa y del proceso de participación para estudiantes UDLAP.' },
-  { date: '24 de enero', title: 'Encuesta de interés', description: 'Registro de intereses y disponibilidad para integrarse a las actividades del programa.' },
-  { date: '26 y 27 de enero', title: 'Dinámicas de reclutamiento', description: 'Actividades de selección; la sesión del 27 de enero se documentó en modalidad presencial.' },
-  { date: '30 de enero', title: 'Notificación de aceptación', description: 'Comunicación de resultados a las y los estudiantes seleccionados.' },
-  { date: '3 de febrero', title: 'Inicio e integración de equipos', description: 'Arranque de actividades e integración presencial de los equipos de trabajo.' },
-  { date: '4 de febrero', title: 'Formación: Enseñar a enseñar 1', description: 'Primera sesión de preparación para el diseño y acompañamiento de talleres.' },
-];
+import { studentProcessDates, studentProcessSettings } from '../utils/student-process';
 ---
 
 <BaseLayout title="Proceso de servicio social | PI-ENSA" description="Fechas del proceso de aceptación de estudiantes UDLAP en PI-ENSA.">
   <PageHero
     title="Proceso de aceptación para estudiantes UDLAP"
-    description="Calendario documentado para quienes participaron en el proceso de servicio social de PI-ENSA durante 2026."
+    description="Consulta el calendario del proceso de servicio social de PI-ENSA."
   />
 
   <section class="section">
     <div class="container max-w-5xl">
       <div class="notice">
-        <strong>Proceso 2026 concluido.</strong> Estas fechas corresponden al calendario documentado de enero y febrero de 2026. La próxima convocatoria se publicará cuando esté disponible.
+        <strong>{studentProcessSettings.status}</strong>{' '}{studentProcessSettings.message}
       </div>
 
       <div class="mt-10 grid gap-5 md:grid-cols-2">
-        {processDates.map((item, index) => (
+        {studentProcessDates.map((item, index) => (
           <article class="card relative overflow-hidden">
             <span class="absolute right-5 top-4 text-5xl font-black text-[var(--primary)]/10" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-            <p class="eyebrow">{item.date} de 2026</p>
+            <p class="eyebrow">{item.date}</p>
             <h2 class="mt-2 pr-12 text-2xl font-bold">{item.title}</h2>
             <p class="mt-3 text-[var(--muted)]">{item.description}</p>
           </article>
         ))}
       </div>
 
-      <p class="mt-8 text-sm text-[var(--muted)]">
-        Calendario elaborado a partir del programa de actividades 2026 de PI-ENSA. Las fechas de futuras convocatorias pueden cambiar.
-      </p>
+      {studentProcessSettings.note && <p class="mt-8 text-sm text-[var(--muted)]">{studentProcessSettings.note}</p>}
     </div>
   </section>
 </BaseLayout>

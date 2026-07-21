@@ -10,7 +10,7 @@ Sitio oficial de PI-ENSA, iniciativa de estudiantes y docentes de Ciencias e Ing
 
 El aviso de inscripciones y la oferta se administran desde `src/data/oferta-talleres.md`.
 
-La primera tabla controla el estado, las fechas ordinarias y la fecha límite para inscripciones extemporáneas. La segunda tabla contiene el nombre, la descripción, la ruta del cartel PDF y el estado de publicación de cada taller.
+La primera tabla controla los periodos mostrados en Talleres y Agenda, el estado y las fechas de inscripción. La segunda tabla contiene el nombre, la descripción, la ruta del cartel PDF y el estado de publicación de cada taller.
 
 Para publicar:
 
@@ -25,8 +25,9 @@ Las filas con `No` se conservan como borradores y no aparecen en el sitio. Si no
 ## Otras áreas de edición
 
 - Configuración general y formulario: `src/config/site.ts`
-- Navegación, agenda y preguntas frecuentes: `src/data/site-data.ts`
-- Proceso de estudiantes UDLAP: `src/pages/servicio-social.astro`
+- Navegación y preguntas frecuentes: `src/data/site-data.ts`
+- Agenda de talleres y control de publicación: `src/data/agenda-talleres.md`
+- Proceso de estudiantes UDLAP: `src/data/proceso-estudiantes.md`
 - Noticias: `src/content/news/`
 - Imágenes: `public/images/`
 - Diseño y colores: `src/styles/global.css`
