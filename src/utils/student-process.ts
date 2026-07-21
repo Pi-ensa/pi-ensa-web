@@ -8,14 +8,14 @@ const fields = Object.fromEntries(
 );
 
 export const studentProcessSettings = {
+  showDates: /^sí$/i.test(fields['mostrar fechas'] || ''),
   status: fields.estado || 'Proceso por confirmar.',
   message: fields.mensaje || '',
   note: fields.nota || '',
 };
 
 export const studentProcessDates = tableRows(source, 'Fecha')
-  .filter((cells) => cells.length >= 4)
-  .filter(([, , , published]) => /^sí$/i.test(published.trim()))
+  .filter((cells) => cells.length >= 3)
   .map(([date, title, description]) => ({
     date: date.trim(),
     title: title.trim(),
