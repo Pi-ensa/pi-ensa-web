@@ -1,4 +1,79 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/common/PageHero.astro'; import { thematicAreas } from '../data/site-data'; import { workshopOffer } from '../utils/workshop-offer'; import { withBase } from '../utils/paths';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/common/PageHero.astro';
+import {
+  currentWorkshopOffer,
+  historicalWorkshopExamples,
+  registrationBanner,
+} from '../utils/workshop-offer';
+import { withBase } from '../utils/paths';
 ---
-<BaseLayout title="Talleres | PI-ENSA" description="Consulta los talleres y carteles publicados por PI-ENSA."><PageHero title="Aprender ciencia haciéndola" description="Consulta el nombre, la descripción y el cartel informativo de cada taller ofertado."/><section class="section"><div class="container">{workshopOffer.length ? <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{workshopOffer.map((workshop)=><article class="card card-link flex flex-col"><p class="eyebrow">Taller PI-ENSA</p><h2 class="mt-2 text-2xl font-bold">{workshop.name}</h2><p class="mt-3 flex-1 text-[var(--muted)]">{workshop.description}</p><a class="button mt-6" href={withBase(workshop.posterPdf)} target="_blank" rel="noopener noreferrer">Ver cartel en PDF <span class="sr-only">(abre en otra pestaña)</span></a></article>)}</div> : <div class="notice"><strong>Próxima oferta en preparación.</strong> Los talleres aparecerán aquí cuando sus carteles estén publicados.</div>}<section class="mt-14"><p class="eyebrow">Trayectoria temática</p><h2 class="mt-3 text-3xl font-extrabold">Áreas exploradas por PI-ENSA</h2><div class="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{thematicAreas.map((area)=><article class="card"><h3 class="text-xl font-bold text-[var(--primary)]">{area.name}</h3><p>{area.description}</p></article>)}</div></section></div></section></BaseLayout>
+
+<BaseLayout title="Talleres | PI-ENSA" description="Consulta la oferta de talleres y sus carteles informativos.">
+  <PageHero
+    title="Talleres ofertados"
+    description="Consulta la oferta del periodo enero a mayo de 2026 y los carteles informativos disponibles."
+  />
+
+  <section class="section">
+    <div class="container">
+      <aside class="rounded-3xl border border-white/20 bg-[var(--primary)] p-6 text-white shadow-lg md:p-8" aria-labelledby="registration-status">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-white/75">Estado de la convocatoria</p>
+        <h2 id="registration-status" class="mt-2 text-3xl font-extrabold">{registrationBanner.status}</h2>
+        <div class="mt-5 grid gap-3 md:grid-cols-2">
+          <p class="rounded-2xl bg-white/10 p-4"><strong>Periodo de inscripciones:</strong><br />{registrationBanner.registrationPeriod}</p>
+          <p class="rounded-2xl bg-white/10 p-4"><strong>Inscripciones extemporáneas:</strong><br />{registrationBanner.lateRegistration}</p>
+        </div>
+      </aside>
+
+      <section class="mt-14" aria-labelledby="current-offer">
+        <p class="eyebrow">Periodo enero-mayo 2026</p>
+        <h2 id="current-offer" class="mt-3 text-3xl font-extrabold">Talleres ofertados para este periodo</h2>
+        {
+          currentWorkshopOffer.length ? (
+            <div class="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {currentWorkshopOffer.map((workshop) => (
+                <article class="card card-link flex flex-col">
+                  <p class="eyebrow">{workshop.period}</p>
+                  <h3 class="mt-2 text-2xl font-bold">{workshop.name}</h3>
+                  <p class="mt-3 flex-1 text-[var(--muted)]">{workshop.description}</p>
+                  <a class="button mt-6" href={withBase(workshop.posterPdf)} target="_blank" rel="noopener noreferrer">
+                    Ver cartel en PDF <span class="sr-only">(abre en otra pestaña)</span>
+                  </a>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="notice mt-7">
+              <strong>Oferta en actualización.</strong> Los talleres del periodo aparecerán aquí cuando sus carteles estén publicados.
+            </div>
+          )
+        }
+      </section>
+
+      {
+        historicalWorkshopExamples.length > 0 && (
+          <section class="mt-16 border-t border-[var(--border)] pt-12" aria-labelledby="historical-examples">
+            <p class="eyebrow">Archivo PI-ENSA</p>
+            <h2 id="historical-examples" class="mt-3 text-3xl font-extrabold">Ejemplos de talleres históricos</h2>
+            <p class="mt-3 max-w-3xl text-[var(--muted)]">
+              Estos carteles documentan actividades de periodos anteriores y se muestran únicamente como referencia histórica; no forman parte de la oferta vigente.
+            </p>
+            <div class="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {historicalWorkshopExamples.map((workshop) => (
+                <article class="card card-link flex flex-col">
+                  <p class="eyebrow">{workshop.period}</p>
+                  <h3 class="mt-2 text-2xl font-bold">{workshop.name}</h3>
+                  <p class="mt-3 flex-1 text-[var(--muted)]">{workshop.description}</p>
+                  <a class="button mt-6" href={withBase(workshop.posterPdf)} target="_blank" rel="noopener noreferrer">
+                    Ver cartel histórico <span class="sr-only">(abre en otra pestaña)</span>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

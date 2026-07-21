@@ -1,4 +1,29 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/common/PageHero.astro'; import { SITE } from '../config/site'; import { withBase } from '../utils/paths'; const registration=SITE.participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/common/PageHero.astro';
+import { SITE } from '../config/site';
+import { withBase } from '../utils/paths';
+
+const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
 ---
-<BaseLayout title="Participa | PI-ENSA"><PageHero title="Súmate a PI-ENSA" description="El programa reúne a estudiantes universitarios que diseñan experiencias y a niñas, niños y jóvenes que participan en los talleres."/><section class="section"><div class="container grid gap-6 md:grid-cols-2"><article class="card card-link flex flex-col"><p class="eyebrow">Estudiantes UDLAP</p><h2 class="mt-3 text-2xl font-bold">Diseña y comparte</h2><p class="flex-1">Participa en la promoción, diseño e implementación de talleres, formación para el trabajo con menores y documentación de resultados.</p><a class="button mt-6" href={withBase('/agenda/')}>Ver calendario de actividades</a></article><article class="card card-link flex flex-col"><p class="eyebrow">Niñas, niños y jóvenes</p><h2 class="mt-3 text-2xl font-bold">Explora y experimenta</h2><p class="flex-1">Los talleres han recibido participantes de primaria, secundaria y bachillerato. Las edades, cupos y requisitos dependen de cada convocatoria.</p><a class="button mt-6" href={registration} target={SITE.participantFormUrl ? '_blank' : undefined} rel={SITE.participantFormUrl ? 'noopener noreferrer' : undefined}>Inscríbete</a></article></div><p class="mt-6 text-center text-sm text-[var(--muted)]">Mientras no exista un formulario activo, el botón de inscripción prepara un correo al equipo PI-ENSA.</p></div></section></BaseLayout>
+
+<BaseLayout title="Participa | PI-ENSA">
+  <PageHero title="Súmate a PI-ENSA" description="El programa reúne a estudiantes universitarios que diseñan experiencias y a niñas, niños y jóvenes que participan en los talleres." />
+  <section class="section">
+    <div class="container grid gap-6 md:grid-cols-2">
+      <article class="card card-link flex flex-col">
+        <p class="eyebrow">Estudiantes UDLAP</p>
+        <h2 class="mt-3 text-2xl font-bold">Diseña y comparte</h2>
+        <p class="flex-1">Participa en la promoción, diseño e implementación de talleres, formación para el trabajo con menores y documentación de resultados.</p>
+        <a class="button mt-6" href={withBase('/servicio-social/')}>Consulta el proceso de aceptación</a>
+      </article>
+      <article class="card card-link flex flex-col">
+        <p class="eyebrow">Niñas, niños y jóvenes</p>
+        <h2 class="mt-3 text-2xl font-bold">Explora y experimenta</h2>
+        <p class="flex-1">Los talleres han recibido participantes de primaria, secundaria y bachillerato. Las edades, cupos y requisitos dependen de cada convocatoria.</p>
+        <a class="button mt-6" href={registration} target={SITE.participantFormUrl ? '_blank' : undefined} rel={SITE.participantFormUrl ? 'noopener noreferrer' : undefined}>Inscríbete</a>
+      </article>
+      <p class="mt-6 text-center text-sm text-[var(--muted)] md:col-span-2">Mientras no exista un formulario activo, el botón de inscripción prepara un correo al equipo PI-ENSA.</p>
+    </div>
+  </section>
+</BaseLayout>

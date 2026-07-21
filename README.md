@@ -1,4 +1,4 @@
-# PI-ENSA — sitio web
+# PI-ENSA - sitio web
 
 Sitio oficial de PI-ENSA, iniciativa de estudiantes y docentes de Ciencias e Ingeniería de la UDLAP para acercar experiencias STEM a niñas, niños y jóvenes.
 
@@ -8,31 +8,34 @@ Sitio oficial de PI-ENSA, iniciativa de estudiantes y docentes de Ciencias e Ing
 
 ## Publicar la oferta de talleres
 
-La oferta se administra desde una sola tabla Markdown:
+La oferta y el aviso de inscripciones se administran desde:
 
 `src/data/oferta-talleres.md`
 
-Cada fila contiene:
+La primera tabla controla estos textos del banner:
 
-- nombre del taller;
-- descripción breve;
-- ruta del cartel PDF;
-- estado de publicación.
+- estado de las inscripciones;
+- periodo ordinario;
+- fecha límite para inscripciones extemporáneas.
+
+La segunda tabla contiene cada taller, su descripción, la ruta del cartel, el tipo de publicación, el periodo y su estado.
 
 Para publicar:
 
 1. Copia el cartel a `public/documentos/carteles/`.
-2. Agrega una fila en la tabla de `oferta-talleres.md`.
-3. Usa una ruta como `/documentos/carteles/robotica.pdf`.
-4. Escribe `Sí` en **Publicado**.
-5. Ejecuta `npm run build` para verificar.
+2. Agrega una fila en la tabla **Talleres**.
+3. Usa una ruta como `/documentos/carteles/nombre-del-cartel.pdf`.
+4. Escribe `Vigente` para la oferta actual o `Histórico` para el archivo de ejemplos.
+5. Escribe `Sí` en **Publicado**.
+6. Ejecuta `npm run build` para verificar.
 
 Las filas con `No` se conservan como borradores y no aparecen en el sitio.
 
 ## Otras áreas de edición
 
 - Configuración general y formulario: `src/config/site.ts`
-- Navegación, áreas, agenda y FAQ: `src/data/site-data.ts`
+- Navegación, agenda y preguntas frecuentes: `src/data/site-data.ts`
+- Proceso de estudiantes UDLAP: `src/pages/servicio-social.astro`
 - Noticias: `src/content/news/`
 - Imágenes: `public/images/`
 - Diseño y colores: `src/styles/global.css`
