@@ -8,4 +8,4 @@ Edita únicamente las filas de la tabla. Para publicar un taller:
 
 | Taller | Descripción breve | Cartel PDF | Publicado |
 | --- | --- | --- | --- |
-| [Nombre del taller] | [Descripción breve para el sitio] | /documentos/carteles/nombre-del-cartel.pdf | No |
+| Robótica | [Aprende a construir y programar un robot] | /documentos/carteles/robotica.pdf | Sí |
