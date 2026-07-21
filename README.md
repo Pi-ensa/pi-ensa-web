@@ -8,28 +8,19 @@ Sitio oficial de PI-ENSA, iniciativa de estudiantes y docentes de Ciencias e Ing
 
 ## Publicar la oferta de talleres
 
-La oferta y el aviso de inscripciones se administran desde:
+El aviso de inscripciones y la oferta se administran desde `src/data/oferta-talleres.md`.
 
-`src/data/oferta-talleres.md`
-
-La primera tabla controla estos textos del banner:
-
-- estado de las inscripciones;
-- periodo ordinario;
-- fecha límite para inscripciones extemporáneas.
-
-La segunda tabla contiene cada taller, su descripción, la ruta del cartel, el tipo de publicación, el periodo y su estado.
+La primera tabla controla el estado, las fechas ordinarias y la fecha límite para inscripciones extemporáneas. La segunda tabla contiene el nombre, la descripción, la ruta del cartel PDF y el estado de publicación de cada taller.
 
 Para publicar:
 
 1. Copia el cartel a `public/documentos/carteles/`.
 2. Agrega una fila en la tabla **Talleres**.
 3. Usa una ruta como `/documentos/carteles/nombre-del-cartel.pdf`.
-4. Escribe `Vigente` para la oferta actual o `Histórico` para el archivo de ejemplos.
-5. Escribe `Sí` en **Publicado**.
-6. Ejecuta `npm run build` para verificar.
+4. Escribe `Sí` en **Publicado**.
+5. Ejecuta `npm run build` para verificar.
 
-Las filas con `No` se conservan como borradores y no aparecen en el sitio.
+Las filas con `No` se conservan como borradores y no aparecen en el sitio. Si no hay talleres publicados, la página muestra únicamente el aviso de inscripciones.
 
 ## Otras áreas de edición
 
