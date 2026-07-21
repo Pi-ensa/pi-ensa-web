@@ -6,15 +6,28 @@ Sitio oficial de PI-ENSA, iniciativa de estudiantes y docentes de Ciencias e Ing
 
 `npm install`, `npm run dev`, `npm run check`, `npm run build` y `npm run preview`.
 
-## Agregar un taller
+## Publicar la oferta de talleres
 
-1. Duplica `src/content/workshops/_plantilla.md`.
-2. Renombra el archivo con una URL clara, por ejemplo `robotica-basica.md`.
-3. Completa título, resumen, área, público, modalidad, fechas, horario, estado y enlace de inscripción.
-4. Sustituye el contenido de ejemplo.
-5. Cambia `draft: true` por `draft: false` para publicarlo.
+La oferta se administra desde una sola tabla Markdown:
 
-Cada archivo genera automáticamente una tarjeta en `/talleres/` y una página individual.
+`src/data/oferta-talleres.md`
+
+Cada fila contiene:
+
+- nombre del taller;
+- descripción breve;
+- ruta del cartel PDF;
+- estado de publicación.
+
+Para publicar:
+
+1. Copia el cartel a `public/documentos/carteles/`.
+2. Agrega una fila en la tabla de `oferta-talleres.md`.
+3. Usa una ruta como `/documentos/carteles/robotica.pdf`.
+4. Escribe `Sí` en **Publicado**.
+5. Ejecuta `npm run build` para verificar.
+
+Las filas con `No` se conservan como borradores y no aparecen en el sitio.
 
 ## Otras áreas de edición
 
