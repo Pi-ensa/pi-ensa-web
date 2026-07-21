@@ -1,4 +1,23 @@
-﻿---
-import { navigation } from '../../data/site-data'; import { withBase } from '../../utils/paths';
 ---
-<header class="border-b border-black/10 bg-white"><div class="container flex min-h-20 items-center justify-between gap-6"><a class="font-bold no-underline" href={withBase('/')} aria-label="PI-ENSA, inicio">PI-ENSA <span class="sr-only">[Logotipo pendiente]</span></a><nav aria-label="NavegaciÃ³n principal"><details class="md:hidden"><summary class="cursor-pointer font-semibold">MenÃº</summary><ul class="absolute right-4 z-10 mt-3 rounded-xl border bg-white p-4 shadow-lg">{navigation.map(([label,href]) => <li><a class="block px-3 py-2" href={withBase(href)}>{label}</a></li>)}</ul></details><ul class="hidden items-center gap-4 md:flex">{navigation.map(([label,href]) => <li><a class="rounded px-2 py-2 no-underline hover:underline" href={withBase(href)}>{label}</a></li>)}</ul></nav></div></header>
+import { navigation } from '../../data/site-data';
+import { withBase } from '../../utils/paths';
+const current = Astro.url.pathname;
+---
+<header class="sticky top-0 z-30 border-b border-[var(--border)] bg-white/95 backdrop-blur">
+  <div class="container flex min-h-20 items-center justify-between gap-6">
+    <a class="shrink-0" href={withBase('/')} aria-label="PI-ENSA, inicio">
+      <img src={withBase('/images/brand/pi-ensa-logo.png')} width="154" height="86" alt="PI-ENSA" class="h-14 w-auto" />
+    </a>
+    <nav aria-label="Navegación principal">
+      <details class="relative lg:hidden">
+        <summary class="cursor-pointer rounded-lg border-2 border-[var(--primary)] px-4 py-2 font-bold text-[var(--primary)]">Menú</summary>
+        <ul class="absolute right-0 mt-3 w-64 rounded-xl border border-[var(--border)] bg-white p-3 shadow-xl">
+          {navigation.map(([label, href]) => <li><a class="block rounded-lg px-3 py-2 hover:bg-[var(--primary-light)]" href={withBase(href)}>{label}</a></li>)}
+        </ul>
+      </details>
+      <ul class="hidden items-center gap-1 lg:flex">
+        {navigation.map(([label, href]) => <li><a aria-current={current === withBase(href) ? 'page' : undefined} class="rounded-lg px-3 py-2 text-sm font-semibold no-underline hover:bg-[var(--primary-light)] aria-[current=page]:bg-[var(--primary-light)] aria-[current=page]:text-[var(--primary)]" href={withBase(href)}>{label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>

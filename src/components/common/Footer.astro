@@ -1,4 +1,10 @@
-﻿---
-import { navigation } from '../../data/site-data'; import { withBase } from '../../utils/paths';
 ---
-<footer class="border-t border-black/10 bg-[var(--surface)] py-10"><div class="container grid gap-8 md:grid-cols-3"><div><strong>PI-ENSA</strong><p>[DescripciÃ³n pendiente de validaciÃ³n]</p></div><nav aria-label="NavegaciÃ³n del pie"><ul>{navigation.map(([label,href]) => <li><a href={withBase(href)}>{label}</a></li>)}</ul></nav><div><p>[Datos de contacto pendientes]</p><p>Â© {new Date().getFullYear()} PI-ENSA</p></div></div></footer>
+import { SITE } from '../../config/site'; import { navigation } from '../../data/site-data'; import { withBase } from '../../utils/paths';
+---
+<footer class="border-t border-[var(--border)] bg-[#0b2348] py-12 text-white">
+  <div class="container grid gap-10 md:grid-cols-3">
+    <div><img src={withBase('/images/brand/pi-ensa-logo.png')} width="154" height="86" alt="PI-ENSA" class="mb-4 h-14 w-auto rounded bg-white px-2" /><p class="max-w-sm text-blue-100">Ciencia e ingeniería para niñas, niños y jóvenes.</p></div>
+    <nav aria-label="Navegación del pie"><h2 class="mb-3 text-base font-bold">Explora</h2><ul class="grid grid-cols-2 gap-x-5 gap-y-2 text-sm">{navigation.map(([label, href]) => <li><a href={withBase(href)}>{label}</a></li>)}</ul></nav>
+    <div><h2 class="mb-3 text-base font-bold">Contacto</h2><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>{SITE.socialLinks.facebook && <p><a href={SITE.socialLinks.facebook} target="_blank" rel="noopener noreferrer">Facebook <span class="sr-only">(abre en otra pestaña)</span></a></p>}<p class="mt-5 text-xs text-blue-200">Marca registrada ante el IMPI, registro 2830464. Titular: Fundación Universidad de las Américas Puebla.</p><p class="text-xs text-blue-200">© {new Date().getFullYear()} PI-ENSA</p></div>
+  </div>
+</footer>

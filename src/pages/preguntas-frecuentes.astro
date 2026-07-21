@@ -1,4 +1,4 @@
-﻿---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/common/PageHero.astro'; import EmptyState from '../components/common/EmptyState.astro';
 ---
-<BaseLayout title="Preguntas frecuentes | PI-ENSA"><PageHero title="Preguntas frecuentes"/><section class="section"><div class="container"><EmptyState/></div></section></BaseLayout>
+import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/common/PageHero.astro'; import { faqs } from '../data/site-data';
+---
+<BaseLayout title="Preguntas frecuentes | PI-ENSA"><PageHero title="Preguntas frecuentes"/><section class="section"><div class="container max-w-4xl">{faqs.map((item) => <details class="mb-4 rounded-xl border border-[var(--border)] bg-white p-5"><summary class="cursor-pointer text-lg font-bold">{item.question}</summary><p class="mt-3 text-[var(--muted)]">{item.answer}</p></details>)}</div></section></BaseLayout>

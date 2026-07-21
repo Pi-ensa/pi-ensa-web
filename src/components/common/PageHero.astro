@@ -1,4 +1,4 @@
-﻿---
-interface Props { title:string; description?:string } const { title, description='[Contenido pendiente de validaciÃ³n]' } = Astro.props;
 ---
-<section class="section bg-[var(--surface)]"><div class="container"><p class="font-semibold text-[var(--primary)]">PI-ENSA</p><h1 class="max-w-3xl text-4xl font-bold md:text-5xl">{title}</h1><p class="mt-5 max-w-2xl text-lg">{description}</p></div></section>
+interface Props { eyebrow?: string; title: string; description?: string } const { eyebrow='PI-ENSA', title, description } = Astro.props;
+---
+<section class="section bg-[var(--surface)]"><div class="container"><p class="eyebrow">{eyebrow}</p><h1 class="display mt-3 font-extrabold">{title}</h1>{description && <p class="lead mt-6">{description}</p>}</div></section>

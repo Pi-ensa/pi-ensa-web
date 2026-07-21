@@ -1,6 +1,13 @@
-﻿import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-const projects = defineCollection({ loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }), schema: z.object({ title:z.string(), summary:z.string(), status:z.enum(['open','upcoming','active','completed']), featured:z.boolean().default(false), area:z.string(), modality:z.string(), period:z.string(), places:z.number().int().positive().optional(), audience:z.array(z.string()).default([]), profiles:z.array(z.string()).default([]), organization:z.string().optional(), coordinator:z.string().optional(), location:z.string().optional(), image:z.string().optional(), formUrl:z.string().url().or(z.literal('')).default(''), publishedDate:z.coerce.date() }) });
-const news = defineCollection({ loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/news' }), schema: z.object({ title:z.string(), summary:z.string(), publishedDate:z.coerce.date(), author:z.string(), image:z.string().optional(), tags:z.array(z.string()).default([]), draft:z.boolean().default(false) }) });
-const testimonials = defineCollection({ loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/testimonials' }), schema: z.object({ name:z.string(), participantType:z.string(), project:z.string().optional(), image:z.string().optional(), featured:z.boolean().default(false), published:z.boolean().default(false) }) });
-export const collections = { projects, news, testimonials };
+
+const news = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/news' }),
+  schema: z.object({
+    title: z.string(), summary: z.string(), publishedDate: z.coerce.date(),
+    author: z.string(), image: z.string().optional(), tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { news };
