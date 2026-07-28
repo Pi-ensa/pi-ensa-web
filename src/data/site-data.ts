@@ -1,6 +1,6 @@
 export const navigation = [
-  ['Inicio', '/'], ['¿Quiénes somos?', '/programa/'], ['Talleres', '/talleres/'],
-  ['Agenda', '/agenda/'], ['Participa', '/participa/'], ['Impacto', '/impacto/'],
+  ['Inicio', '/'], ['¿Quiénes somos?', '/programa/'], ['Inscríbete', '/talleres/'],
+  ['Agenda', '/agenda/'], ['Servicio social', '/servicio-social/'], ['Impacto', '/impacto/'],
   ['Noticias', '/noticias/'], ['Contacto', '/contacto/'],
 ] as const;
 
