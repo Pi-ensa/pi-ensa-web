@@ -1,41 +1,42 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import source from '../content/paginas/quienes-somos.md?raw';
 import PageHero from '../components/common/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fields, sectionClass, tableRows } from '../utils/markdown-data';
 import { withBase } from '../utils/paths';
+
+const page = fields(source, 'Página');
+const presentation = tableRows(source, 'Presentación');
+const keyDates = fields(source, 'Fechas clave');
+const timeline = tableRows(source, 'Cronología');
+const coordination = fields(source, 'Coordinación académica');
 ---
 
-<BaseLayout title="¿Quiénes somos? | PI-ENSA" description="Conoce el propósito, la historia y el modelo de trabajo de PI-ENSA.">
-  <PageHero title="¿Quiénes somos?" description="PI-ENSA conecta la experiencia universitaria con la curiosidad de niñas, niños y jóvenes mediante actividades STEM." />
+<BaseLayout title={page['título']} description={page['descripción seo']}>
+  <PageHero title={page['título principal']} description={page['introducción']} />
 
   <section class="section">
     <div class="container grid gap-10 lg:grid-cols-[1fr_.8fr]">
       <article class="prose">
-        <h2>Una comunidad que comparte ciencia</h2>
-        <p>Somos una iniciativa de estudiantes y docentes de las Escuelas de Ciencias e Ingeniería de la Universidad de las Américas Puebla. También han participado estudiantes de otras especialidades, enriqueciendo el programa con perspectivas diversas.</p>
-        <h2>Objetivo</h2>
-        <p>Involucrar a niñas, niños y jóvenes en ciencias e ingeniería desde un momento temprano de sus vidas y contribuir al desarrollo de talento que apoye el progreso de la sociedad.</p>
+        {presentation.map(([title, text]) => <><h2>{title}</h2><p>{text}</p></>)}
       </article>
-
       <aside class="card self-start">
-        <p class="eyebrow">Fechas clave para el programa</p>
+        <p class="eyebrow">{keyDates.etiqueta}</p>
         <ol class="mt-5 space-y-5">
-          <li><strong>2014</strong><br />Experiencia antecedente tipo Summer School.</li>
-          <li><strong>2015</strong><br />Inicia PI-ENSA.</li>
-          <li><strong>20XX</strong><br />Información pendiente por definir.</li>
-          <li><strong>20XX</strong><br />Información pendiente por definir.</li>
+          {timeline.map(([year, description]) => <li><strong>{year}</strong><br />{description}</li>)}
         </ol>
-        <a class="button mt-6" href={withBase('/impacto/')}>Conoce el impacto</a>
+        <a class="button mt-6" href={withBase(keyDates.ruta)}>{keyDates['botón']}</a>
       </aside>
     </div>
   </section>
 
-  <section class="section bg-[var(--surface)]">
+  <section class={sectionClass(coordination['diseño'], 'Claro')}>
     <div class="container">
-      <p class="eyebrow">Personas que impulsan PI-ENSA</p>
-      <h2 class="mt-3 text-3xl font-extrabold">Coordinación académica</h2>
+      <p class="eyebrow">{coordination.etiqueta}</p>
+      <h2 class="mt-3 text-3xl font-extrabold">{coordination['título']}</h2>
       <div class="lead mt-4 space-y-4">
-        <p>El programa fue fundado por el Dr. Rubén Alejos Palomares, el Dr. Juan José Rojas Villegas y la Dra. Laura Verónica Pla. Su acompañamiento articuló el diseño, la supervisión y el desarrollo de las actividades realizadas por estudiantes universitarios.</p>
-        <p>Actualmente, el programa es dirigido por el Dr. Juan José Rojas Villegas, la Dra. Laura Verónica Pla y el Dr. César Martínez Torres.</p>
+        <p>{coordination['párrafo 1']}</p>
+        <p>{coordination['párrafo 2']}</p>
       </div>
     </div>
   </section>

@@ -1,18 +1,19 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import source from '../content/paginas/inscribete.md?raw';
 import PageHero from '../components/common/PageHero.astro';
 import { SITE } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fields } from '../utils/markdown-data';
 import { registrationBanner, workshopOffer } from '../utils/workshop-offer';
 import { withBase } from '../utils/paths';
 
+const page = fields(source, 'Página');
+const participants = fields(source, 'Participantes');
 const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
 ---
 
-<BaseLayout title="Inscríbete | PI-ENSA" description="Consulta la convocatoria, los talleres y la información de inscripción para niñas, niños y jóvenes.">
-  <PageHero
-    title="Inscríbete a PI-ENSA"
-    description="Consulta la convocatoria, las fechas y los talleres disponibles para niñas, niños y jóvenes."
-  />
+<BaseLayout title={page['título']} description={page['descripción seo']}>
+  <PageHero title={page['título principal']} description={page['introducción']} />
 
   <section class="section">
     <div class="container">
@@ -25,40 +26,34 @@ const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?sub
       </aside>
 
       <article class="card card-link mt-8 flex flex-col">
-        <p class="eyebrow">Niñas, niños y jóvenes</p>
-        <h2 class="mt-3 text-2xl font-bold">Explora y experimenta</h2>
-        <p class="max-w-3xl flex-1">Los talleres han recibido participantes de primaria, secundaria y bachillerato. Las edades, cupos y requisitos dependen de cada convocatoria.</p>
+        <p class="eyebrow">{participants.etiqueta}</p>
+        <h2 class="mt-3 text-2xl font-bold">{participants['título']}</h2>
+        <p class="max-w-3xl flex-1">{participants.texto}</p>
         <a
           class="button mt-6"
           href={registration}
           target={SITE.participantFormUrl ? '_blank' : undefined}
           rel={SITE.participantFormUrl ? 'noopener noreferrer' : undefined}
-        >Inscríbete</a>
+        >{participants['botón']}</a>
       </article>
-      {
-        !SITE.participantFormUrl && (
-          <p class="mt-4 text-center text-sm text-[var(--muted)]">Mientras no exista un formulario activo, el botón de inscripción prepara un correo al equipo PI-ENSA.</p>
-        )
-      }
+      {!SITE.participantFormUrl && <p class="mt-4 text-center text-sm text-[var(--muted)]">{participants['nota sin formulario']}</p>}
 
-      {
-        workshopOffer.length > 0 && (
-          <section class="mt-14" aria-labelledby="current-offer">
-            <h2 id="current-offer" class="text-3xl font-extrabold">Talleres ofertados {registrationBanner.workshopPeriod}</h2>
-            <div class="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {workshopOffer.map((workshop) => (
-                <article class="card card-link flex flex-col">
-                  <h3 class="text-2xl font-bold">{workshop.name}</h3>
-                  <p class="mt-3 flex-1 text-[var(--muted)]">{workshop.description}</p>
-                  <a class="button mt-6" href={withBase(workshop.posterPdf)} target="_blank" rel="noopener noreferrer">
-                    Ver cartel en PDF <span class="sr-only">(abre en otra pestaña)</span>
-                  </a>
-                </article>
-              ))}
-            </div>
-          </section>
-        )
-      }
+      {workshopOffer.length > 0 && (
+        <section class="mt-14" aria-labelledby="current-offer">
+          <h2 id="current-offer" class="text-3xl font-extrabold">Talleres ofertados {registrationBanner.workshopPeriod}</h2>
+          <div class="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {workshopOffer.map((workshop) => (
+              <article class="card card-link flex flex-col">
+                <h3 class="text-2xl font-bold">{workshop.name}</h3>
+                <p class="mt-3 flex-1 text-[var(--muted)]">{workshop.description}</p>
+                <a class="button mt-6" href={withBase(workshop.posterPdf)} target="_blank" rel="noopener noreferrer">
+                  Ver cartel en PDF <span class="sr-only">(abre en otra pestaña)</span>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   </section>
 </BaseLayout>

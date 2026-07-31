@@ -1,24 +1,16 @@
-import source from '../data/proceso-estudiantes.md?raw';
-import { tableRows } from './workshop-offer';
+import source from '../content/paginas/servicio-social.md?raw';
+import { fields, isEnabled, tableRows } from './markdown-data';
 
-const fields = Object.fromEntries(
-  tableRows(source, 'Campo')
-    .filter((cells) => cells.length >= 2)
-    .map(([key, value]) => [key.trim().toLocaleLowerCase('es'), value.trim()]),
-);
+const settings = fields(source, 'Información general');
 
 export const studentProcessSettings = {
-  showDates: /^sí$/i.test(fields['mostrar fechas'] || ''),
-  status: fields.estado || 'Proceso por confirmar.',
-  message: fields.mensaje || '',
-  note: fields.nota || '',
+  showDates: isEnabled(settings['mostrar fechas']),
+  status: settings.estado || 'Proceso por confirmar.',
+  message: settings.mensaje || '',
+  note: settings.nota || '',
 };
 
-export const studentProcessDates = tableRows(source, 'Fecha')
+export const studentProcessDates = tableRows(source, 'Fechas del proceso')
   .filter((cells) => cells.length >= 3)
-  .map(([date, title, description]) => ({
-    date: date.trim(),
-    title: title.trim(),
-    description: description.trim(),
-  }))
+  .map(([date, title, description]) => ({ date, title, description }))
   .filter((item) => item.date && item.title && item.description);

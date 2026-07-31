@@ -1,14 +1,24 @@
+import source from '../content/paginas/configuracion.md?raw';
+import { fields, tableRows } from '../utils/markdown-data';
+
+const site = fields(source, 'Sitio');
+const social = Object.fromEntries(
+  tableRows(source, 'Redes sociales').map(([name, url]) => [name.toLocaleLowerCase('es'), url]),
+);
+
 export const SITE = {
-  name: 'PI-ENSA',
-  title: 'PI-ENSA | Ciencia e ingeniería para niñas, niños y jóvenes',
-  description: 'Iniciativa de estudiantes y docentes de Ciencias e Ingeniería de la UDLAP que acerca la ciencia, la tecnología, la ingeniería y las matemáticas a niñas, niños y jóvenes.',
-  siteUrl: 'https://pi-ensa.github.io/pi-ensa-web',
-  basePath: '/pi-ensa-web',
-  contactEmail: 'piensa.ciencia@udlap.mx',
-  studentFormUrl: '',
-  participantFormUrl: '',
+  name: site.nombre,
+  title: site['título'],
+  description: site['descripción'],
+  siteUrl: site.url,
+  basePath: site['ruta base'],
+  contactEmail: site.correo,
+  studentFormUrl: site['formulario estudiantes'],
+  participantFormUrl: site['formulario participantes'],
   socialLinks: {
-    facebook: 'https://www.facebook.com/Talleres-PI-ensa-UDLAP-586629875153002',
-    instagram: '', linkedin: '', youtube: '',
+    facebook: social.facebook || '',
+    instagram: social.instagram || '',
+    linkedin: social.linkedin || '',
+    youtube: social.youtube || '',
   },
 } as const;

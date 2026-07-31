@@ -1,41 +1,35 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import source from '../content/paginas/agenda.md?raw';
 import PageHero from '../components/common/PageHero.astro';
-import { registrationBanner } from '../utils/workshop-offer';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { agendaSettings, workshopAgenda } from '../utils/workshop-agenda';
+import { fields } from '../utils/markdown-data';
+import { registrationBanner } from '../utils/workshop-offer';
+
+const page = fields(source, 'Página');
 ---
 
-<BaseLayout title="Agenda | PI-ENSA" description="Consulta las fechas y horarios de los talleres PI-ENSA.">
-  <PageHero
-    eyebrow={registrationBanner.agendaPeriod}
-    title="Agenda de talleres"
-    description="Consulta las fechas y horarios publicados para cada grupo."
-  />
+<BaseLayout title={page['título']} description={page['descripción seo']}>
+  <PageHero eyebrow={registrationBanner.agendaPeriod} title={page['título principal']} description={page['introducción']} />
   <section class="section">
     <div class="container">
-      {
-        agendaSettings.showSchedule ? (
-          <>
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {workshopAgenda.map((group) => (
-                <article class="card">
-                  <p class="eyebrow">Grupo</p>
-                  <h2 class="mt-2 text-2xl font-extrabold">{group.day}</h2>
-                  {group.time && group.time.toLocaleLowerCase('es') !== 'por confirmar' && (
-                    <p class="mt-2 font-semibold text-[var(--primary)]">{group.time}</p>
-                  )}
-                  <ol class="schedule-list">
-                    {group.sessions.map((session) => <li>{session}</li>)}
-                  </ol>
-                </article>
-              ))}
-            </div>
-            {agendaSettings.note && <p class="mt-8 text-sm text-[var(--muted)]">{agendaSettings.note}</p>}
-          </>
-        ) : (
-          <div class="notice"><strong>{agendaSettings.alternateMessage}</strong></div>
-        )
-      }
+      {agendaSettings.showSchedule ? (
+        <>
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {workshopAgenda.map((group) => (
+              <article class="card">
+                <p class="eyebrow">Grupo</p>
+                <h2 class="mt-2 text-2xl font-extrabold">{group.day}</h2>
+                {group.time && group.time.toLocaleLowerCase('es') !== 'por confirmar' && <p class="mt-2 font-semibold text-[var(--primary)]">{group.time}</p>}
+                <ol class="schedule-list">{group.sessions.map((session) => <li>{session}</li>)}</ol>
+              </article>
+            ))}
+          </div>
+          {agendaSettings.note && <p class="mt-8 text-sm text-[var(--muted)]">{agendaSettings.note}</p>}
+        </>
+      ) : (
+        <div class="notice"><strong>{agendaSettings.alternateMessage}</strong></div>
+      )}
     </div>
   </section>
 </BaseLayout>

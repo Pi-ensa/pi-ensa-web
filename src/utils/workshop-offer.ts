@@ -1,4 +1,5 @@
-import source from '../data/oferta-talleres.md?raw';
+import source from '../content/paginas/inscribete.md?raw';
+import { fields, isEnabled, tableRows } from './markdown-data';
 
 export interface RegistrationBanner {
   workshopPeriod: string;
@@ -14,56 +15,18 @@ export interface WorkshopOffer {
   posterPdf: string;
 }
 
-function normalize(value: string) {
-  return value.trim().replace(/^\[|\]$/g, '');
-}
+const registration = fields(source, 'Fechas de inscripción');
 
-function parseRow(line: string) {
-  return line.split('|').slice(1, -1).map((cell) => cell.trim());
-}
+export const registrationBanner: RegistrationBanner = {
+  workshopPeriod: registration['periodo de talleres'] || 'Periodo por confirmar',
+  agendaPeriod: registration['periodo de agenda'] || 'PERIODO POR CONFIRMAR',
+  status: registration.estado || 'Estado por confirmar',
+  registrationDates: registration.inscripciones || 'Fechas por confirmar',
+  lateRegistration: registration['inscripciones extemporáneas'] || 'Fecha por confirmar',
+};
 
-export function tableRows(markdown: string, firstColumn: string) {
-  const lines = markdown.split(/\r?\n/);
-  const headerIndex = lines.findIndex((line) =>
-    new RegExp(`^\\|\\s*${firstColumn}\\s*\\|`, 'i').test(line),
-  );
-  if (headerIndex < 0) return [];
-
-  const rows: string[][] = [];
-  for (const line of lines.slice(headerIndex + 2)) {
-    if (!line.trim().startsWith('|')) break;
-    rows.push(parseRow(line));
-  }
-  return rows;
-}
-
-function parseRegistrationBanner(markdown: string): RegistrationBanner {
-  const fields = Object.fromEntries(
-    tableRows(markdown, 'Campo')
-      .filter((cells) => cells.length >= 2)
-      .map(([key, value]) => [normalize(key).toLocaleLowerCase('es'), normalize(value)]),
-  );
-
-  return {
-    workshopPeriod: fields['periodo de talleres'] || 'Periodo por confirmar',
-    agendaPeriod: fields['periodo de agenda'] || 'PERIODO POR CONFIRMAR',
-    status: fields.estado || 'Estado por confirmar',
-    registrationDates: fields.inscripciones || 'Fechas por confirmar',
-    lateRegistration: fields['inscripciones extemporáneas'] || 'Fecha por confirmar',
-  };
-}
-
-function parseWorkshopOffer(markdown: string): WorkshopOffer[] {
-  return tableRows(markdown, 'Taller')
-    .filter((cells) => cells.length >= 4)
-    .filter(([, , , published]) => /^sí$/i.test(published.trim()))
-    .map(([name, description, posterPdf]) => ({
-      name: normalize(name),
-      description: normalize(description),
-      posterPdf: normalize(posterPdf),
-    }))
-    .filter((workshop) => workshop.name && workshop.description && workshop.posterPdf);
-}
-
-export const registrationBanner = parseRegistrationBanner(source);
-export const workshopOffer = parseWorkshopOffer(source);
+export const workshopOffer: WorkshopOffer[] = tableRows(source, 'Talleres')
+  .filter((cells) => cells.length >= 4)
+  .filter(([, , , published]) => isEnabled(published))
+  .map(([name, description, posterPdf]) => ({ name, description, posterPdf }))
+  .filter((workshop) => workshop.name && workshop.description && workshop.posterPdf);

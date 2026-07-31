@@ -1,4 +1,30 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/common/PageHero.astro'; import { SITE } from '../config/site';
+import source from '../content/paginas/contacto.md?raw';
+import PageHero from '../components/common/PageHero.astro';
+import { SITE } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fields, tableRows } from '../utils/markdown-data';
+
+const page = fields(source, 'Página');
+const channels = tableRows(source, 'Canales');
 ---
-<BaseLayout title="Contacto | PI-ENSA"><PageHero title="Mantente en contacto" description="Consulta próximas convocatorias, requisitos y actividades a través de los canales del programa."/><section class="section"><div class="container grid gap-6 md:grid-cols-2"><article class="card"><p class="eyebrow">Correo electrónico</p><h2 class="mt-3 text-2xl font-bold">Escríbenos</h2><a class="mt-4 inline-block text-lg font-semibold text-[var(--primary)]" href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></article><article class="card"><p class="eyebrow">Red social documentada</p><h2 class="mt-3 text-2xl font-bold">Facebook</h2><a class="button mt-4" href={SITE.socialLinks.facebook} target="_blank" rel="noopener noreferrer">Talleres PI-ensa UDLAP <span class="sr-only">(abre en otra pestaña)</span></a></article></div><p class="notice mt-8">No se publica ubicación, horario ni teléfono porque los documentos revisados no confirman esos datos como canales vigentes.</p></div></section></BaseLayout>
+
+<BaseLayout title={page['título']}>
+  <PageHero title={page['título principal']} description={page['introducción']} />
+  <section class="section">
+    <div class="container grid gap-6 md:grid-cols-2">
+      {channels.map(([type, label, title, linkText]) => (
+        <article class="card">
+          <p class="eyebrow">{label}</p>
+          <h2 class="mt-3 text-2xl font-bold">{title}</h2>
+          {type.toLocaleLowerCase('es') === 'correo' ? (
+            <a class="mt-4 inline-block text-lg font-semibold text-[var(--primary)]" href={`mailto:${SITE.contactEmail}`}>{linkText}</a>
+          ) : (
+            <a class="button mt-4" href={SITE.socialLinks.facebook} target="_blank" rel="noopener noreferrer">{linkText} <span class="sr-only">(abre en otra pestaña)</span></a>
+          )}
+        </article>
+      ))}
+      <p class="notice mt-8">{page.aviso}</p>
+    </div>
+  </section>
+</BaseLayout>

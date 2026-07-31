@@ -1,47 +1,37 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import source from '../content/paginas/impacto.md?raw';
 import PageHero from '../components/common/PageHero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fields, tableRows } from '../utils/markdown-data';
+
+const page = fields(source, 'Página');
+const indicators = tableRows(source, 'Indicadores');
+const content = tableRows(source, 'Contenido').map(([column, order, title, text]) => ({ column, order, title, text }));
+const columns = ['1', '2'].map((column) => content.filter((item) => item.column === column).sort((a, b) => Number(a.order) - Number(b.order)));
 ---
 
-<BaseLayout title="Impacto | PI-ENSA" description="Conoce la participación, los talleres y el alcance de PI-ENSA.">
-  <PageHero eyebrow="Impacto PI-ENSA" title="Ciencia que conecta y transforma" description="Cada taller crea oportunidades para descubrir, experimentar y compartir el conocimiento." />
+<BaseLayout title={page['título']} description={page['descripción seo']}>
+  <PageHero eyebrow={page.etiqueta} title={page['título principal']} description={page['introducción']} />
 
   <section class="section">
     <div class="container">
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <article class="card">
-          <p class="text-4xl font-extrabold text-[var(--primary)]">1,413</p>
-          <p>Participaciones de niñas, niños y jóvenes registradas entre Otoño 2015 y Primavera 2021.</p>
-        </article>
-        <article class="card">
-          <p class="text-4xl font-extrabold text-[var(--primary)]">16</p>
-          <p>Máximo de talleres ofrecidos en un periodo de Primavera.</p>
-        </article>
-        <article class="card">
-          <p class="text-4xl font-extrabold text-[var(--primary)]">Número</p>
-          <p>Lorem ipsum: información pendiente por definir.</p>
-        </article>
-        <article class="card">
-          <p class="text-4xl font-extrabold text-[var(--primary)]">Número</p>
-          <p>Lorem ipsum: información pendiente por definir.</p>
-        </article>
+        {indicators.map(([number, description]) => (
+          <article class="card">
+            <p class="text-4xl font-extrabold text-[var(--primary)]">{number}</p>
+            <p>{description}</p>
+          </article>
+        ))}
       </div>
 
-      <p class="mt-5 text-sm text-[var(--muted)]">Entre Otoño 2015 y Primavera 2021, PI-ENSA registró 1,413 participaciones en sus actividades: 603 durante los periodos de Otoño y 810 durante los de Primavera. Esta cifra refleja asistencias acumuladas y no necesariamente personas únicas.</p>
+      <p class="mt-5 text-sm text-[var(--muted)]">{page['nota de indicadores']}</p>
 
       <div class="mt-12 grid gap-10 lg:grid-cols-2">
-        <article class="prose">
-          <h2>Aprendizaje y alcance</h2>
-          <p>PI-ENSA ha reunido a estudiantes de escuelas públicas y privadas, principalmente de primaria, secundaria y bachillerato. La modalidad virtual también permitió acercar sus actividades a participantes de Puebla, Veracruz, Querétaro, Tuxtla Gutiérrez y Tlaxcala.</p>
-          <h2>Participación universitaria</h2>
-          <p>Estudiantes de distintos programas académicos colaboran como responsables de talleres, compartiendo conocimientos y desarrollando habilidades de comunicación, organización y trabajo en equipo.</p>
-        </article>
-        <article class="prose">
-          <h2>Temas con mayor interés</h2>
-          <p>Entre los talleres que han despertado mayor interés se encuentran dibujo por computadora, robótica, programación, química, biomédica, primeros auxilios, paradojas y paradigmas e ingeniería industrial.</p>
-          <h2>Una comunidad en crecimiento</h2>
-          <p>Cada periodo permite renovar la oferta, incorporar nuevas ideas y fortalecer el vínculo entre la comunidad universitaria y las nuevas generaciones.</p>
-        </article>
+        {columns.map((items) => (
+          <article class="prose">
+            {items.map((item) => <><h2>{item.title}</h2><p>{item.text}</p></>)}
+          </article>
+        ))}
       </div>
     </div>
   </section>

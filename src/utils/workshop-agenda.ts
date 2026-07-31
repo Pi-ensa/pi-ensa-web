@@ -1,5 +1,5 @@
-import source from '../data/agenda-talleres.md?raw';
-import { tableRows } from './workshop-offer';
+import source from '../content/paginas/agenda.md?raw';
+import { fields, isEnabled, tableRows } from './markdown-data';
 
 export interface AgendaGroup {
   day: string;
@@ -7,24 +7,20 @@ export interface AgendaGroup {
   sessions: string[];
 }
 
-const fields = Object.fromEntries(
-  tableRows(source, 'Campo')
-    .filter((cells) => cells.length >= 2)
-    .map(([key, value]) => [key.trim().toLocaleLowerCase('es'), value.trim()]),
-);
+const settings = fields(source, 'Publicación');
 
 export const agendaSettings = {
-  showSchedule: /^sí$/i.test(fields['mostrar agenda'] || ''),
-  alternateMessage: fields['mensaje alternativo'] || 'Periodo concluido.',
-  note: fields.nota || '',
+  showSchedule: isEnabled(settings['mostrar agenda']),
+  alternateMessage: settings['mensaje alternativo'] || 'Periodo concluido.',
+  note: settings.nota || '',
 };
 
-export const workshopAgenda: AgendaGroup[] = tableRows(source, 'Día')
+export const workshopAgenda: AgendaGroup[] = tableRows(source, 'Fechas y horarios')
   .filter((cells) => cells.length >= 4)
-  .filter(([, , , published]) => /^sí$/i.test(published.trim()))
+  .filter(([, , , published]) => isEnabled(published))
   .map(([day, time, dates]) => ({
-    day: day.trim(),
-    time: time.trim(),
+    day,
+    time,
     sessions: dates.split(';').map((date) => date.trim()).filter(Boolean),
   }))
   .filter((group) => group.day && group.sessions.length > 0);

@@ -1,55 +1,68 @@
 ---
+import source from '../content/paginas/inicio.md?raw';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { thematicAreas } from '../data/site-data';
+import { fields, sectionClass, tableRows } from '../utils/markdown-data';
 import { withBase } from '../utils/paths';
+
+const page = fields(source, 'Página');
+const hero = fields(source, 'Presentación');
+const heroButtons = tableRows(source, 'Botones de presentación');
+const service = fields(source, 'Servicio social');
+const about = fields(source, 'Qué es PI-ENSA');
+const workshops = fields(source, 'Talleres');
+const thematicAreas = tableRows(source, 'Áreas').map(([name, description]) => ({ name, description }));
+const offer = fields(source, 'Oferta destacada');
+const serviceIsBlue = service['diseño'].toLocaleLowerCase('es') === 'azul';
+const offerIsBlue = offer['diseño'].toLocaleLowerCase('es') === 'azul';
 ---
 
-<BaseLayout title="PI-ENSA | Ciencia e ingeniería para niñas, niños y jóvenes">
-  <section class="section overflow-hidden">
+<BaseLayout title={page['título']}>
+  <section class={sectionClass(hero['diseño'], 'Principal')}>
     <div class="container grid items-center gap-10 lg:grid-cols-[1.05fr_.95fr]">
       <div>
-        <p class="eyebrow">Programa PI-ENSA · UDLAP</p>
-        <h1 class="display mt-4 font-extrabold">La curiosidad también se aprende haciendo</h1>
-        <p class="lead mt-6">Estudiantes y docentes de Ciencias e Ingeniería de la UDLAP acercan experiencias STEM a niñas, niños y jóvenes mediante talleres, cursos y actividades prácticas.</p>
+        <p class="eyebrow">{hero.etiqueta}</p>
+        <h1 class="display mt-4 font-extrabold">{hero['título']}</h1>
+        <p class="lead mt-6">{hero.texto}</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a class="button" href={withBase('/talleres/')}>Inscríbete</a>
-          <a class="button secondary" href={withBase('/programa/')}>Conoce el programa</a>
+          {heroButtons.map(([text, path, style]) => (
+            <a class:list={['button', { secondary: style.toLocaleLowerCase('es') === 'secundario' }]} href={withBase(path)}>{text}</a>
+          ))}
         </div>
       </div>
       <figure>
-        <img src={withBase('/images/general/estudiantes-pi-ensa.png')} width="1100" height="820" alt="Participantes de PI-ENSA durante una actividad grupal al aire libre" class="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-2xl" />
-        <figcaption class="mt-3 text-sm text-[var(--muted)]">Actividad de PI-ENSA. Archivo del programa.</figcaption>
+        <img src={withBase(hero.imagen)} width="1100" height="820" alt={hero['texto alternativo']} class="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-2xl" />
+        <figcaption class="mt-3 text-sm text-[var(--muted)]">{hero['pie de imagen']}</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="section bg-[var(--primary)] text-white">
+  <section class={sectionClass(service['diseño'], 'Azul')}>
     <div class="container grid items-center gap-8 md:grid-cols-[1fr_auto]">
       <div>
-        <p class="eyebrow !text-blue-200">Estudiantes UDLAP</p>
-        <h2 class="mt-3 text-3xl font-extrabold">Realiza tu servicio social con PI-ENSA</h2>
-        <p class="mt-3 max-w-2xl text-blue-100">Diseña, promueve e implementa talleres para niñas, niños y jóvenes mientras fortaleces tus habilidades de comunicación, organización y trabajo en equipo.</p>
+        <p class:list={['eyebrow', { '!text-blue-200': serviceIsBlue }]}>{service.etiqueta}</p>
+        <h2 class="mt-3 text-3xl font-extrabold">{service['título']}</h2>
+        <p class:list={['mt-3 max-w-2xl', serviceIsBlue ? 'text-blue-100' : 'text-[var(--muted)]']}>{service.texto}</p>
       </div>
-      <a class="button border-white bg-white !text-[var(--primary)]" href={withBase('/servicio-social/')}>Conoce el proceso</a>
+      <a class:list={['button', { 'border-white bg-white !text-[var(--primary)]': serviceIsBlue }]} href={withBase(service.ruta)}>{service['botón']}</a>
     </div>
   </section>
 
-  <section class="section bg-[var(--surface)]">
+  <section class={sectionClass(about['diseño'], 'Claro')}>
     <div class="container grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
       <div>
-        <p class="eyebrow">¿Qué es PI-ENSA?</p>
-        <h2 class="mt-3 text-3xl font-extrabold md:text-4xl">Una comunidad universitaria que comparte ciencia</h2>
+        <p class="eyebrow">{about.etiqueta}</p>
+        <h2 class="mt-3 text-3xl font-extrabold md:text-4xl">{about['título']}</h2>
       </div>
       <div class="lead">
-        <p>PI-ENSA reúne a estudiantes y docentes de las Escuelas de Ciencias e Ingeniería de la Universidad de las Américas Puebla. Su propósito es cultivar el interés por la ciencia, la tecnología, la ingeniería y las matemáticas desde edades tempranas.</p>
-        <p>Las actividades combinan aprendizaje práctico, acompañamiento universitario y contacto con distintas disciplinas.</p>
+        <p>{about['párrafo 1']}</p>
+        <p>{about['párrafo 2']}</p>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class={sectionClass(workshops['diseño'], 'Blanco')}>
     <div class="container">
-      <h2 class="max-w-2xl text-3xl font-extrabold md:text-4xl">Talleres</h2>
+      <h2 class="max-w-2xl text-3xl font-extrabold md:text-4xl">{workshops['título']}</h2>
       <div class="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {thematicAreas.map((area) => (
           <article class="card">
@@ -58,18 +71,18 @@ import { withBase } from '../utils/paths';
           </article>
         ))}
       </div>
-      <p class="mt-6 text-sm text-[var(--muted)]">La oferta y las áreas de aprendizaje pueden cambiar en cada convocatoria.</p>
+      <p class="mt-6 text-sm text-[var(--muted)]">{workshops.nota}</p>
     </div>
   </section>
 
-  <section class="section bg-[var(--primary)] text-white">
+  <section class={sectionClass(offer['diseño'], 'Azul')}>
     <div class="container grid items-center gap-8 md:grid-cols-[1fr_auto]">
       <div>
-        <p class="eyebrow !text-blue-200">Oferta de talleres</p>
-        <h2 class="mt-3 text-3xl font-extrabold">Talleres ofertados en el periodo enero–mayo de 2026</h2>
-        <p class="mt-3 max-w-2xl text-blue-100">Consulta la lista de talleres y las áreas de aprendizaje que formaron parte del periodo.</p>
+        <p class:list={['eyebrow', { '!text-blue-200': offerIsBlue }]}>{offer.etiqueta}</p>
+        <h2 class="mt-3 text-3xl font-extrabold">{offer['título']}</h2>
+        <p class:list={['mt-3 max-w-2xl', offerIsBlue ? 'text-blue-100' : 'text-[var(--muted)]']}>{offer.texto}</p>
       </div>
-      <a class="button border-white bg-white !text-[var(--primary)]" href={withBase('/talleres/')}>Ver talleres ofertados</a>
+      <a class:list={['button', { 'border-white bg-white !text-[var(--primary)]': offerIsBlue }]} href={withBase(offer.ruta)}>{offer['botón']}</a>
     </div>
   </section>
 </BaseLayout>
