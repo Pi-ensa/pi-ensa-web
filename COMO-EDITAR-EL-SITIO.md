@@ -15,11 +15,11 @@ Los archivos de las pestañas están en `src/content/paginas/`.
 | Servicio social | `servicio-social.md` |
 | Impacto | `impacto.md` |
 | Noticias | `noticias.md` |
-| Contacto | `contacto.md` |
-| Preguntas frecuentes | `preguntas-frecuentes.md` |
+| Contacto y preguntas frecuentes | `contacto.md` |
+| Aviso emergente del Inicio | `aviso-general.md` |
 | Menú, correo, redes y pie de página | `configuracion.md` |
 
-Las noticias individuales se encuentran en `src/content/news/`.
+La lista principal de noticias se administra en `noticias.md`. Los artículos internos con contenido extenso se encuentran en `src/content/news/`.
 
 ## Regla principal
 
@@ -67,7 +67,37 @@ Estos controles se encuentran en:
 - `Mostrar agenda`, dentro de `agenda.md`;
 - `Mostrar fechas`, dentro de `servicio-social.md`;
 - `Publicado`, en cada taller de `inscribete.md`;
-- `draft`, en las noticias, donde `true` oculta la noticia y `false` la publica.
+- `Mostrar`, en cada noticia de `noticias.md`;
+- `Mostrar`, dentro de `aviso-general.md`.
+
+## Publicar noticias y galerías
+
+Cada fila de la tabla `Noticias publicadas` en `noticias.md` genera una tarjeta. El campo `Enlace` acepta una ruta interna, por ejemplo `/agenda/`, o una dirección externa completa. El campo `Popup` se deja vacío cuando la noticia no necesita una ventana emergente; para una galería se escribe `Galería`, que será el texto del botón. El campo `Mostrar` acepta `Sí`, `Si` o `No`.
+
+Las galerías de `Graduación Otoño 2026` y `Talleres Primavera 2026` se preparan automáticamente. Las fotografías originales se colocan en:
+
+- `fotos_originales/graduacion/`;
+- `fotos_originales/talleres_periodo/`.
+
+Después se ejecuta:
+
+```powershell
+python scripts/preparar_galerias.py
+```
+
+El script corrige la orientación, reduce las dimensiones, convierte las imágenes a WebP, las renombra como `001.webp`, `002.webp` y sucesivamente, reemplaza las carpetas publicables y actualiza la tabla `Galerías de noticias`. Los resultados se guardan en `public/fotos_publicables/graduacion/` y `public/fotos_publicables/talleres_periodo/`. Las fotografías originales no se envían a GitHub.
+
+Si falta la biblioteca de imágenes, se instala una sola vez con `python -m pip install -r requirements-galerias.txt`.
+
+Para retirar por completo las fotografías originales y publicables de ambas galerías se ejecuta `python scripts/elminar_galeria_historico.py`. El script solicita escribir `ELIMINAR`, conserva las carpetas y sus archivos `.gitkeep`, y vacía automáticamente la tabla `Galerías de noticias`.
+
+## Aviso general del Inicio
+
+El archivo `aviso-general.md` controla la ventana que puede aparecer al abrir Inicio. `Mostrar | Sí` activa el aviso y `Mostrar | No` lo conserva oculto. El botón y el enlace son opcionales.
+
+## Preguntas y canales de contacto
+
+Las preguntas frecuentes y sus respuestas se administran como filas dentro de `contacto.md`. En la tabla `Canales de comunicación`, cada canal tiene su propio enlace y un campo `Mostrar`. Correo y Facebook están publicados; teléfono, Instagram, LinkedIn y YouTube pueden prepararse con anticipación y activarse cambiando `No` por `Sí` cuando exista un enlace oficial.
 
 ## Cambiar el fondo de una sección
 

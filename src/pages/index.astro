@@ -1,7 +1,8 @@
 ---
 import source from '../content/paginas/inicio.md?raw';
+import noticeSource from '../content/paginas/aviso-general.md?raw';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { fields, sectionClass, tableRows } from '../utils/markdown-data';
+import { fields, isEnabled, sectionClass, tableRows } from '../utils/markdown-data';
 import { withBase } from '../utils/paths';
 
 const page = fields(source, 'Página');
@@ -12,8 +13,12 @@ const about = fields(source, 'Qué es PI-ENSA');
 const workshops = fields(source, 'Talleres');
 const thematicAreas = tableRows(source, 'Áreas').map(([name, description]) => ({ name, description }));
 const offer = fields(source, 'Oferta destacada');
+const generalNotice = fields(noticeSource, 'Publicación');
+const showGeneralNotice = isEnabled(generalNotice.mostrar);
 const serviceIsBlue = service['diseño'].toLocaleLowerCase('es') === 'azul';
 const offerIsBlue = offer['diseño'].toLocaleLowerCase('es') === 'azul';
+const noticeLinkIsExternal = /^(https?:)?\/\//i.test(generalNotice.enlace || '');
+const noticeLink = noticeLinkIsExternal ? generalNotice.enlace : withBase(generalNotice.enlace);
 ---
 
 <BaseLayout title={page['título del navegador']}>
@@ -85,4 +90,31 @@ const offerIsBlue = offer['diseño'].toLocaleLowerCase('es') === 'azul';
       <a class:list={['button', { 'on-dark': offerIsBlue }]} href={withBase(offer.ruta)}>{offer['botón']}</a>
     </div>
   </section>
+
+  {showGeneralNotice && (
+    <dialog id="general-notice-dialog" class="site-dialog site-dialog-small" aria-labelledby="general-notice-title">
+      <div class="site-dialog-header">
+        <div>
+          <p class="eyebrow">{generalNotice.etiqueta}</p>
+          <h2 id="general-notice-title" class="mt-2 text-3xl font-bold">{generalNotice['título']}</h2>
+        </div>
+        <button class="site-dialog-close" type="button" data-close-general-notice aria-label="Cerrar aviso">×</button>
+      </div>
+      <div class="site-dialog-content">
+        <p class="lead">{generalNotice.mensaje}</p>
+        {generalNotice['botón'] && generalNotice.enlace && (
+          <a class="button mt-6" href={noticeLink} target={noticeLinkIsExternal ? '_blank' : undefined} rel={noticeLinkIsExternal ? 'noopener noreferrer' : undefined}>{generalNotice['botón']}</a>
+        )}
+      </div>
+    </dialog>
+  )}
 </BaseLayout>
+
+<script>
+  const generalNoticeDialog = document.querySelector<HTMLDialogElement>('#general-notice-dialog');
+  if (generalNoticeDialog) requestAnimationFrame(() => generalNoticeDialog.showModal());
+  document.querySelector<HTMLButtonElement>('[data-close-general-notice]')?.addEventListener('click', () => generalNoticeDialog?.close());
+  generalNoticeDialog?.addEventListener('click', (event) => {
+    if (event.target === generalNoticeDialog) generalNoticeDialog.close();
+  });
+</script>

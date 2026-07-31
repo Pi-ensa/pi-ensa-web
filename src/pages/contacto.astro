@@ -1,30 +1,49 @@
 ---
 import source from '../content/paginas/contacto.md?raw';
 import PageHero from '../components/common/PageHero.astro';
-import { SITE } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { fields, tableRows } from '../utils/markdown-data';
+import { fields, isEnabled, tableRows } from '../utils/markdown-data';
 
 const page = fields(source, 'Página');
-const channels = tableRows(source, 'Canales');
+const questions = tableRows(source, 'Preguntas frecuentes').filter(([question, answer]) => question && answer);
+const channels = tableRows(source, 'Canales de comunicación')
+  .filter((row) => row.length >= 6)
+  .map(([type, label, title, linkText, link, show]) => ({ type, label, title, linkText, link, show }))
+  .filter((channel) => channel.title && channel.link && isEnabled(channel.show));
+const opensNewTab = (link = '') => /^https?:\/\//i.test(link);
 ---
 
 <BaseLayout title={page['título del navegador']}>
   <PageHero eyebrow={page.etiqueta} title={page['título principal']} description={page['introducción']} />
+  <section class="section bg-[var(--surface)]">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-extrabold md:text-4xl">{page['título preguntas frecuentes']}</h2>
+      <div class="mt-8 grid gap-4">
+        {questions.map(([question, answer]) => (
+          <details class="card group">
+            <summary class="cursor-pointer text-xl font-bold text-[var(--primary)]">{question}</summary>
+            <p class="mt-4 text-[var(--muted)]">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="section">
-    <div class="container grid gap-6 md:grid-cols-2">
-      {channels.map(([type, label, title, linkText]) => (
-        <article class="card">
-          <p class="eyebrow">{label}</p>
-          <h2 class="mt-3 text-2xl font-bold">{title}</h2>
-          {type.toLocaleLowerCase('es') === 'correo' ? (
-            <a class="mt-4 inline-block text-lg font-semibold text-[var(--primary)]" href={`mailto:${SITE.contactEmail}`}>{linkText}</a>
-          ) : (
-            <a class="button mt-4" href={SITE.socialLinks.facebook} target="_blank" rel="noopener noreferrer">{linkText} <span class="sr-only">(abre en otra pestaña)</span></a>
-          )}
-        </article>
-      ))}
-      <p class="notice mt-8">{page.aviso}</p>
+    <div class="container">
+      <p class="eyebrow">{page['etiqueta canales']}</p>
+      <h2 class="mt-3 text-3xl font-extrabold md:text-4xl">{page['título canales']}</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {channels.map((channel) => (
+          <article class="card">
+            <p class="eyebrow">{channel.label}</p>
+            <h3 class="mt-3 text-2xl font-bold">{channel.title}</h3>
+            <a class="button mt-4" href={channel.link} target={opensNewTab(channel.link) ? '_blank' : undefined} rel={opensNewTab(channel.link) ? 'noopener noreferrer' : undefined}>
+              {channel.linkText}{opensNewTab(channel.link) && <span class="sr-only"> (abre en otra pestaña)</span>}
+            </a>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>

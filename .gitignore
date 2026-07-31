@@ -2,4 +2,11 @@
 dist/
 .astro/
 .env
+__pycache__/
+*.pyc
+
+fotos_originales/graduacion/*
+!fotos_originales/graduacion/.gitkeep
+fotos_originales/talleres_periodo/*
+!fotos_originales/talleres_periodo/.gitkeep
 
