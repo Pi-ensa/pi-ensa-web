@@ -5,6 +5,7 @@
 | Campo | Valor |
 | --- | --- |
 | Título del navegador | Preguntas frecuentes \| PI-ENSA |
+| Etiqueta | PI-ENSA |
 | Título principal | Preguntas frecuentes |
 
 ## Preguntas

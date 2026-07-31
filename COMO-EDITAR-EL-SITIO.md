@@ -53,6 +53,8 @@ El campo `Título del navegador` controla el texto de la pestaña del navegador 
 
 Para modificar el encabezado visible se utiliza el campo `Título principal` de la misma página.
 
+El campo `Etiqueta` controla el texto azul pequeño que aparece encima del título principal. En Inicio, este dato se encuentra en la tabla `Presentación`; en las demás pestañas está dentro de la tabla `Página`.
+
 ## Mostrar u ocultar contenido
 
 Los controles de publicación aceptan:
@@ -98,7 +100,9 @@ Esto aplica a:
 
 ## Pasos del servicio social
 
-Cada fila de la tabla `Fechas del proceso` en `servicio-social.md` genera un recuadro numerado en la línea del proceso. Para agregar un paso se añade una fila; para eliminarlo se elimina su fila. La numeración y la posición se calculan automáticamente.
+El campo `Calendario a publicar` de `servicio-social.md` acepta `Ordinario` o `Verano`. El calendario ordinario se usa para primavera y otoño; el de verano se usa para los proyectos especiales. Cada fila de la tabla seleccionada genera un recuadro numerado en la línea del proceso. Para agregar un paso se añade una fila; para eliminarlo se elimina su fila. La numeración y la posición se calculan automáticamente.
+
+En el calendario de verano, las columnas `Botón` y `Enlace` son opcionales. El enlace `#proyectos-especiales` abre la ventana con los proyectos registrados en la tabla `Proyectos especiales ofertados`; cualquier dirección web abre el sistema indicado en una pestaña nueva.
 
 ## Publicar un taller
 

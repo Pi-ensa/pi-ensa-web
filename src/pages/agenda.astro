@@ -4,13 +4,12 @@ import PageHero from '../components/common/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { agendaSettings, workshopAgenda } from '../utils/workshop-agenda';
 import { fields } from '../utils/markdown-data';
-import { registrationBanner } from '../utils/workshop-offer';
 
 const page = fields(source, 'Página');
 ---
 
 <BaseLayout title={page['título del navegador']} description={page['descripción seo']}>
-  <PageHero eyebrow={registrationBanner.agendaPeriod} title={page['título principal']} description={page['introducción']} />
+  <PageHero eyebrow={page.etiqueta} title={page['título principal']} description={page['introducción']} />
   <section class="section">
     <div class="container">
       {agendaSettings.showSchedule ? (

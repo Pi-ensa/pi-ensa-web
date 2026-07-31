@@ -3,22 +3,23 @@ import source from '../content/paginas/servicio-social.md?raw';
 import PageHero from '../components/common/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { fields } from '../utils/markdown-data';
-import { studentProcessDates, studentProcessSettings } from '../utils/student-process';
+import { specialProjects, studentProcessDates, studentProcessSettings } from '../utils/student-process';
 
 const page = fields(source, 'Página');
 ---
 
 <BaseLayout title={page['título del navegador']} description={page['descripción seo']}>
-  <PageHero title={page['título principal']} description={page['introducción']} />
+  <PageHero eyebrow={page.etiqueta} title={page['título principal']} description={page['introducción']} />
 
   <section class="section">
     <div class="container max-w-5xl">
-      <div class="notice">
-        <strong>{studentProcessSettings.status}</strong>{' '}{studentProcessSettings.message}
-      </div>
+      {!studentProcessSettings.showDates && (
+        <div class="notice">
+          <strong>{studentProcessSettings.status}</strong>{' '}{studentProcessSettings.message}
+        </div>
+      )}
 
-      {studentProcessSettings.showDates && (
-        <div class="relative mt-12">
+      <div class="relative mt-12">
           <div class="absolute bottom-0 left-6 top-0 w-1 rounded-full bg-[var(--border)] md:left-1/2 md:-translate-x-1/2" aria-hidden="true"></div>
           <ol class="space-y-8">
             {studentProcessDates.map((item, index) => {
@@ -30,9 +31,19 @@ const page = fields(source, 'Página');
                     isEven ? 'md:col-start-1 md:ml-0 md:pr-12' : 'md:col-start-2 md:ml-0 md:pl-12',
                   ]}>
                     <article class="card card-link relative h-full">
-                      <p class="eyebrow">{item.date}</p>
+                      {studentProcessSettings.showDates && <p class="eyebrow">{item.date}</p>}
                       <h2 class="mt-2 text-2xl font-bold">{item.title}</h2>
                       <p class="mt-3 text-[var(--muted)]">{item.description}</p>
+                      {item.button && item.link === '#proyectos-especiales' && (
+                        <button class="button mt-5" type="button" data-open-projects aria-haspopup="dialog">
+                          {item.button}
+                        </button>
+                      )}
+                      {item.button && item.link && item.link !== '#proyectos-especiales' && (
+                        <a class="button mt-5" href={item.link} target="_blank" rel="noopener noreferrer">
+                          {item.button} <span class="sr-only">(abre en otra pestaña)</span>
+                        </a>
+                      )}
                     </article>
                   </div>
                   <span
@@ -43,10 +54,49 @@ const page = fields(source, 'Página');
               );
             })}
           </ol>
-        </div>
-      )}
+      </div>
 
       {studentProcessSettings.showDates && studentProcessSettings.note && <p class="mt-8 text-sm text-[var(--muted)]">{studentProcessSettings.note}</p>}
     </div>
   </section>
+
+  <dialog id="projects-dialog" class="projects-dialog" aria-labelledby="projects-dialog-title">
+    <div class="projects-dialog-header">
+      <div>
+        <p class="eyebrow">Servicio social de verano</p>
+        <h2 id="projects-dialog-title" class="mt-2 text-3xl font-bold">Proyectos especiales ofertados</h2>
+      </div>
+      <button class="projects-dialog-close" type="button" data-close-projects aria-label="Cerrar ventana">×</button>
+    </div>
+    <div class="projects-dialog-content">
+      {specialProjects.length > 0 ? (
+        <div class="grid gap-5 md:grid-cols-2">
+          {specialProjects.map((project) => (
+            <article class="card">
+              <h3 class="text-xl font-bold">{project.title}</h3>
+              <p class="mt-3 text-[var(--muted)]">{project.description}</p>
+              {project.activities && <p class="mt-4"><strong>Actividades:</strong> {project.activities}</p>}
+              {project.profile && <p class="mt-3"><strong>Perfil:</strong> {project.profile}</p>}
+              {project.places && <p class="mt-3"><strong>Lugares:</strong> {project.places}</p>}
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="notice">Los proyectos especiales se publicarán próximamente.</p>
+      )}
+    </div>
+  </dialog>
 </BaseLayout>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#projects-dialog');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-open-projects]').forEach((button) => {
+    button.addEventListener('click', () => dialog?.showModal());
+  });
+
+  document.querySelector<HTMLButtonElement>('[data-close-projects]')?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>

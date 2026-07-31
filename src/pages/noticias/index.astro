@@ -12,7 +12,7 @@ const entries = (await getCollection('news', ({ data }) => !data.draft))
 ---
 
 <BaseLayout title={page['título del navegador']}>
-  <PageHero title={page['título principal']} />
+  <PageHero eyebrow={page.etiqueta} title={page['título principal']} />
   <section class="section">
     <div class="container grid gap-6 md:grid-cols-2">
       {entries.map((entry) => (

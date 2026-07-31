@@ -5,6 +5,7 @@
 | Campo | Valor |
 | --- | --- |
 | Título del navegador | Contacto \| PI-ENSA |
+| Etiqueta | PI-ENSA |
 | Título principal | Mantente en contacto |
 | Introducción | Consulta próximas convocatorias, requisitos y actividades a través de los canales del programa. |
 | Aviso | No se publica ubicación, horario ni teléfono porque los documentos revisados no confirman esos datos como canales vigentes. |

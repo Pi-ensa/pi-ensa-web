@@ -4,8 +4,9 @@
 
 | Campo                 | Valor                                                      |
 | --------------------- | ---------------------------------------------------------- |
-| Título del navegador | Agenda\| PI-ENSA                                           |
+| Título del navegador | Agenda PI-ENSA                                            |
 | Descripción SEO      | Consulta las fechas y horarios de los talleres PI-ENSA.    |
+| Etiqueta              | FEBRERO-MAYO 2026                                         |
 | Título principal     | Agenda de talleres                                         |
 | Introducción         | Consulta las fechas y horarios publicados para cada grupo. |
 

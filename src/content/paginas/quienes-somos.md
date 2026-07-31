@@ -4,8 +4,9 @@
 
 | Campo                 | Valor                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Título del navegador | ¿Quiénes somos?\| PI-ENSA                                                                                            |
+| Título del navegador | ¿Quiénes somos? PI-ENSA                                                                                              |
 | Descripción SEO      | Conoce el propósito, la historia y el modelo de trabajo de PI-ENSA.                                                   |
+| Etiqueta              | PI-ENSA                                                                                                                |
 | Título principal     | ¿Quiénes somos?                                                                                                      |
 | Introducción         | PI-ENSA conecta la experiencia universitaria con la curiosidad de niñas, niños y jóvenes mediante actividades STEM. |
 

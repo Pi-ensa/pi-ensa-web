@@ -1,4 +1,4 @@
 ---
-interface Props { eyebrow?: string; title: string; description?: string } const { eyebrow='PI-ENSA', title, description } = Astro.props;
+interface Props { eyebrow?: string; title: string; description?: string } const { eyebrow='PI-ENSA', title, description } = Astro.props; const titleParts = title.split(/(PI-ENSA)/g);
 ---
-<section class="section bg-[var(--surface)]"><div class="container"><p class="eyebrow">{eyebrow}</p><h1 class="display mt-3 font-extrabold">{title}</h1>{description && <p class="lead mt-6">{description}</p>}</div></section>
+<section class="section bg-[var(--surface)]"><div class="container"><p class="eyebrow">{eyebrow}</p><h1 class="display mt-3 font-extrabold">{titleParts.map((part) => part === 'PI-ENSA' ? <span class="whitespace-nowrap">{part}</span> : part)}</h1>{description && <p class="lead mt-6">{description}</p>}</div></section>

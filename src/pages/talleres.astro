@@ -13,7 +13,7 @@ const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?sub
 ---
 
 <BaseLayout title={page['título del navegador']} description={page['descripción seo']}>
-  <PageHero title={page['título principal']} description={page['introducción']} />
+  <PageHero eyebrow={page.etiqueta} title={page['título principal']} description={page['introducción']} />
 
   <section class="section">
     <div class="container">

@@ -10,7 +10,7 @@ const channels = tableRows(source, 'Canales');
 ---
 
 <BaseLayout title={page['título del navegador']}>
-  <PageHero title={page['título principal']} description={page['introducción']} />
+  <PageHero eyebrow={page.etiqueta} title={page['título principal']} description={page['introducción']} />
   <section class="section">
     <div class="container grid gap-6 md:grid-cols-2">
       {channels.map(([type, label, title, linkText]) => (

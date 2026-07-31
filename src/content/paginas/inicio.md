@@ -2,9 +2,9 @@
 
 ## Página
 
-| Campo                 | Valor                                                          |
-| --------------------- | -------------------------------------------------------------- |
-| Título del navegador | PI-ENSA\| Ciencia e ingeniería para niñas, niños y jóvenes |
+| Campo                 | Valor                                                         |
+| --------------------- | ------------------------------------------------------------- |
+| Título del navegador | PI-ENSA Ciencia e ingeniería para niñas, niños y jóvenes |
 
 ## Presentación
 
