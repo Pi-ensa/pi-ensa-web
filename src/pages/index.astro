@@ -43,7 +43,7 @@ const offerIsBlue = offer['diseño'].toLocaleLowerCase('es') === 'azul';
         <h2 class="mt-3 text-3xl font-extrabold">{service['título']}</h2>
         <p class:list={['mt-3 max-w-2xl', serviceIsBlue ? 'text-blue-100' : 'text-[var(--muted)]']}>{service.texto}</p>
       </div>
-      <a class:list={['button', { 'border-white bg-white !text-[var(--primary)]': serviceIsBlue }]} href={withBase(service.ruta)}>{service['botón']}</a>
+      <a class:list={['button', { 'on-dark': serviceIsBlue }]} href={withBase(service.ruta)}>{service['botón']}</a>
     </div>
   </section>
 
@@ -82,7 +82,7 @@ const offerIsBlue = offer['diseño'].toLocaleLowerCase('es') === 'azul';
         <h2 class="mt-3 text-3xl font-extrabold">{offer['título']}</h2>
         <p class:list={['mt-3 max-w-2xl', offerIsBlue ? 'text-blue-100' : 'text-[var(--muted)]']}>{offer.texto}</p>
       </div>
-      <a class:list={['button', { 'border-white bg-white !text-[var(--primary)]': offerIsBlue }]} href={withBase(offer.ruta)}>{offer['botón']}</a>
+      <a class:list={['button', { 'on-dark': offerIsBlue }]} href={withBase(offer.ruta)}>{offer['botón']}</a>
     </div>
   </section>
 </BaseLayout>

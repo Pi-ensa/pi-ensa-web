@@ -12,7 +12,7 @@
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Diseño           | Principal                                                                                                                                                              |
 | Etiqueta          | Programa PI-ENSA · UDLAP                                                                                                                                              |
-| Título           | La curiosidad también se aprende haciendo                                                                                                                             |
+| Título           | Compartimos ciencia, despertamos vocaciones....                                                                                                                        |
 | Texto             | Estudiantes y docentes de Ciencias e Ingeniería de la UDLAP acercan experiencias STEM a niñas, niños y jóvenes mediante talleres, cursos y actividades prácticas. |
 | Imagen            | /images/general/estudiantes-pi-ensa.png                                                                                                                                |
 | Texto alternativo | Participantes de PI-ENSA durante una actividad grupal al aire libre                                                                                                    |
