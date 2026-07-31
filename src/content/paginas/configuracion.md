@@ -5,7 +5,7 @@
 | Campo | Valor |
 | --- | --- |
 | Nombre | PI-ENSA |
-| Título | PI-ENSA \| Ciencia e ingeniería para niñas, niños y jóvenes |
+| Título del navegador | PI-ENSA \| Ciencia e ingeniería para niñas, niños y jóvenes |
 | Descripción | Iniciativa de estudiantes y docentes de Ciencias e Ingeniería de la UDLAP que acerca la ciencia, la tecnología, la ingeniería y las matemáticas a niñas, niños y jóvenes. |
 | URL | https://pi-ensa.github.io/pi-ensa-web |
 | Ruta base | /pi-ensa-web |

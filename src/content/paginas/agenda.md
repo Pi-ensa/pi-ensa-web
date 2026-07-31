@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 | --- | --- |
-| Título | Agenda \| PI-ENSA |
+| Título del navegador | Agenda \| PI-ENSA |
 | Descripción SEO | Consulta las fechas y horarios de los talleres PI-ENSA. |
 | Título principal | Agenda de talleres |
 | Introducción | Consulta las fechas y horarios publicados para cada grupo. |

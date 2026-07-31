@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 | --- | --- |
-| Título | Preguntas frecuentes \| PI-ENSA |
+| Título del navegador | Preguntas frecuentes \| PI-ENSA |
 | Título principal | Preguntas frecuentes |
 
 ## Preguntas

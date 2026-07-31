@@ -2,9 +2,9 @@
 
 ## Página
 
-| Campo   | Valor                                                                         |
-| ------- | ----------------------------------------------------------------------------- |
-| Título | PI-ENSA\| Ciencia e ingeniería para niñas, niños y jóvenes JHASKDJHKASJDH |
+| Campo                 | Valor                                                          |
+| --------------------- | -------------------------------------------------------------- |
+| Título del navegador | PI-ENSA\| Ciencia e ingeniería para niñas, niños y jóvenes |
 
 ## Presentación
 

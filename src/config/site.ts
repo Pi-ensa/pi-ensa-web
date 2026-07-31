@@ -8,7 +8,7 @@ const social = Object.fromEntries(
 
 export const SITE = {
   name: site.nombre,
-  title: site['título'],
+  title: site['título del navegador'],
   description: site['descripción'],
   siteUrl: site.url,
   basePath: site['ruta base'],

@@ -39,7 +39,7 @@ En las tablas de dos columnas, el nombre del dato está a la izquierda y el cont
 ```md
 | Campo | Valor |
 | --- | --- |
-| Título | Agenda de talleres |
+| Título principal | Agenda de talleres |
 | Introducción | Consulta las fechas y horarios publicados para cada grupo. |
 ```
 
@@ -47,11 +47,17 @@ Para actualizar la página, sólo se cambia el contenido de la columna `Valor`.
 
 El carácter `|` forma parte de la sintaxis de las tablas. Si debe aparecer dentro de un texto, se escribe como `\|`.
 
+## Título del navegador
+
+El campo `Título del navegador` controla el texto de la pestaña del navegador y los metadatos usados al compartir la página. No aparece como encabezado dentro del contenido.
+
+Para modificar el encabezado visible se utiliza el campo `Título principal` de la misma página.
+
 ## Mostrar u ocultar contenido
 
-Los controles de publicación aceptan únicamente:
+Los controles de publicación aceptan:
 
-- `Sí`: muestra el contenido;
+- `Sí` o `Si`: muestra el contenido;
 - `No`: conserva el contenido en el archivo, pero lo oculta en el sitio.
 
 Estos controles se encuentran en:
@@ -89,6 +95,10 @@ Esto aplica a:
 - canales de Contacto;
 - preguntas frecuentes;
 - navegación.
+
+## Pasos del servicio social
+
+Cada fila de la tabla `Fechas del proceso` en `servicio-social.md` genera un recuadro numerado en la línea del proceso. Para agregar un paso se añade una fila; para eliminarlo se elimina su fila. La numeración y la posición se calculan automáticamente.
 
 ## Publicar un taller
 
@@ -159,7 +169,7 @@ Comprobar que:
 
 - cada fila comienza y termina con `|`;
 - no se eliminaron las líneas separadoras de las tablas;
-- los controles usan exactamente `Sí` o `No`;
+- los controles usan `Sí`, `Si` o `No`;
 - las rutas comienzan con `/`;
 - los nombres de los archivos coinciden, incluyendo mayúsculas, minúsculas y extensión;
 - no se cambiaron encabezados ni nombres de campos.

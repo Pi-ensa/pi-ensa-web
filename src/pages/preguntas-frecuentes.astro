@@ -8,7 +8,7 @@ const page = fields(source, 'Página');
 const faqs = tableRows(source, 'Preguntas').map(([question, answer]) => ({ question, answer }));
 ---
 
-<BaseLayout title={page['título']}>
+<BaseLayout title={page['título del navegador']}>
   <PageHero title={page['título principal']} />
   <section class="section">
     <div class="container max-w-4xl">

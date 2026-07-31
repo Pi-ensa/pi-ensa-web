@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 | --- | --- |
-| Título | Impacto \| PI-ENSA |
+| Título del navegador | Impacto \| PI-ENSA |
 | Descripción SEO | Conoce la participación, los talleres y el alcance de PI-ENSA. |
 | Etiqueta | Impacto PI-ENSA |
 | Título principal | Ciencia que conecta y transforma |

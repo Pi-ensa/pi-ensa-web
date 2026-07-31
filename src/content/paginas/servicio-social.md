@@ -4,7 +4,7 @@
 
 | Campo             | Valor                                                              |
 | ----------------- | ------------------------------------------------------------------ |
-| Título           | Proceso de servicio social\| PI-ENSA                               |
+| Título del navegador | Proceso de servicio social\| PI-ENSA                               |
 | Descripción SEO  | Fechas del proceso de aceptación de estudiantes UDLAP en PI-ENSA. |
 | Título principal | Proceso de aceptación para estudiantes UDLAP                      |
 | Introducción     | Consulta el calendario del proceso de servicio social de PI-ENSA.  |

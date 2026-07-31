@@ -8,7 +8,7 @@ import { studentProcessDates, studentProcessSettings } from '../utils/student-pr
 const page = fields(source, 'Página');
 ---
 
-<BaseLayout title={page['título']} description={page['descripción seo']}>
+<BaseLayout title={page['título del navegador']} description={page['descripción seo']}>
   <PageHero title={page['título principal']} description={page['introducción']} />
 
   <section class="section">
@@ -18,15 +18,31 @@ const page = fields(source, 'Página');
       </div>
 
       {studentProcessSettings.showDates && (
-        <div class="mt-10 grid gap-5 md:grid-cols-2">
-          {studentProcessDates.map((item, index) => (
-            <article class="card relative overflow-hidden">
-              <span class="absolute right-5 top-4 text-5xl font-black text-[var(--primary)]/10" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <p class="eyebrow">{item.date}</p>
-              <h2 class="mt-2 pr-12 text-2xl font-bold">{item.title}</h2>
-              <p class="mt-3 text-[var(--muted)]">{item.description}</p>
-            </article>
-          ))}
+        <div class="relative mt-12">
+          <div class="absolute bottom-0 left-6 top-0 w-1 rounded-full bg-[var(--border)] md:left-1/2 md:-translate-x-1/2" aria-hidden="true"></div>
+          <ol class="space-y-8">
+            {studentProcessDates.map((item, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <li class="relative grid md:grid-cols-2">
+                  <div class:list={[
+                    'ml-16',
+                    isEven ? 'md:col-start-1 md:ml-0 md:pr-12' : 'md:col-start-2 md:ml-0 md:pl-12',
+                  ]}>
+                    <article class="card card-link relative h-full">
+                      <p class="eyebrow">{item.date}</p>
+                      <h2 class="mt-2 text-2xl font-bold">{item.title}</h2>
+                      <p class="mt-3 text-[var(--muted)]">{item.description}</p>
+                    </article>
+                  </div>
+                  <span
+                    class="absolute left-6 top-7 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border-4 border-[var(--background)] bg-[var(--primary)] text-sm font-extrabold text-white shadow-lg md:left-1/2"
+                    aria-label={`Paso ${index + 1}`}
+                  >{String(index + 1).padStart(2, '0')}</span>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       )}
 

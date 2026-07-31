@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 | --- | --- |
-| Título | Inscríbete \| PI-ENSA |
+| Título del navegador | Inscríbete \| PI-ENSA |
 | Descripción SEO | Consulta la convocatoria, los talleres y la información de inscripción para niñas, niños y jóvenes. |
 | Título principal | Inscríbete a PI-ENSA |
 | Introducción | Consulta la convocatoria, las fechas y los talleres disponibles para niñas, niños y jóvenes. |

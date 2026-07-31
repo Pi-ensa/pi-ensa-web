@@ -12,7 +12,7 @@ const participants = fields(source, 'Participantes');
 const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
 ---
 
-<BaseLayout title={page['título']} description={page['descripción seo']}>
+<BaseLayout title={page['título del navegador']} description={page['descripción seo']}>
   <PageHero title={page['título principal']} description={page['introducción']} />
 
   <section class="section">

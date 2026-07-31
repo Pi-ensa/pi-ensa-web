@@ -4,5 +4,5 @@
 
 | Campo | Valor |
 | --- | --- |
-| Título | Noticias \| PI-ENSA |
+| Título del navegador | Noticias \| PI-ENSA |
 | Título principal | Noticias y convocatorias |

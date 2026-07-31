@@ -48,7 +48,7 @@ export function fields(markdown: string, heading: string) {
 }
 
 export function isEnabled(value = '') {
-  return /^sí$/i.test(value.trim());
+  return /^s[ií]$/i.test(value.trim());
 }
 
 export function sectionClass(design = '', fallback = 'Blanco') {
