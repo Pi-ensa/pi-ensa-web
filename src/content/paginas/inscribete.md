@@ -35,14 +35,14 @@
 | Taller               | Descripción breve   | Cartel PDF                         | Publicado |
 | -------------------- | -------------------- | ---------------------------------- | --------- |
 | [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre dfel taller] | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre dfel taller] | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
+| [Nombre dfel taller] | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre dfel taller] | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
+| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
 | [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
 | [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
 | [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
