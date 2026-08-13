@@ -27,19 +27,19 @@
 
 ## Cronología
 
-| Año | Descripción                                |
-| ---- | ------------------------------------------- |
-| 2014 | Experiencia antecedente tipo Summer School. |
-| 2015 | Inicia PI-ENSA.                             |
-| 20XX | Información pendiente por definir.         |
-| 20XX | Información pendiente por definir.         |
+| Año | Descripción                                                                                                                                                                                                                                                                           |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2014 | En julio de 2014, la Dra. Marissa Yañez visitó la UDLAP y después de compartir inquietudes y experiencias con profesores de la Escuela de Ingeniería, recibió el respaldo necesario para ofrecer un programa piloto con los mismos objetivos que hoy posee la iniciativa PI-ensa. |
+| 2015 | Inicia PI-ENSA.                                                                                                                                                                                                                                                                        |
+| 20XX | Información pendiente por definir.                                                                                                                                                                                                                                                    |
+| 20XX | Información pendiente por definir.                                                                                                                                                                                                                                                    |
 
 ## Coordinación académica
 
-| Campo      | Valor                                                                                                                                                                                                                                                                          |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Diseño    | Claro                                                                                                                                                                                                                                                                          |
-| Etiqueta   | Personas que impulsan PI-ENSA                                                                                                                                                                                                                                                  |
-| Título    | Coordinación académica                                                                                                                                                                                                                                                       |
-| Párrafo 1 | PI-ENSA fue concebido y fundado por el Dr. Rubén Alejos Palomares, el Dr. Juan José Rojas Villegas y la Dra. Laura Verónica Pla. En conjunto definieron sus objetivos, su estructura y su modelo de trabajo, sentando las bases del programa tal como funciona actualmente. |
-| Párrafo 2 | Actualmente, el programa es dirigido por el Dr. Juan José Rojas Villegas, la Dra. Laura Verónica Pla y el Dr. César Martínez Torres.                                                                                                                                       |
+| Campo      | Valor                                                                                                                                                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Diseño    | Claro                                                                                                                                                                                                                                                              |
+| Etiqueta   | Personas que impulsan PI-ENSA                                                                                                                                                                                                                                      |
+| Título    | Coordinación académica                                                                                                                                                                                                                                           |
+| Párrafo 1 | PI-ENSA fue fundado por el Dr. Rubén Alejos Palomares, el Dr. Juan José Rojas Villegas y la Dra. Laura Verónica Pla. En conjunto definieron sus objetivos, su estructura y su modelo de trabajo, sentando las bases del programa tal como funciona actualmente. |
+| Párrafo 2 | Actualmente, el programa es dirigido por el Dr. Juan José Rojas Villegas, la Dra. Laura Verónica Pla y el Dr. César Martínez Torres.                                                                                                                           |
