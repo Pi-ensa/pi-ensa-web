@@ -46,6 +46,16 @@
 | Párrafo 1 | PI-ENSA reúne a estudiantes y docentes de las Escuelas de Ciencias e Ingeniería de la Universidad de las Américas Puebla. Su propósito es cultivar el interés por la ciencia, la tecnología, la ingeniería y las matemáticas desde edades tempranas. |
 | Párrafo 2 | Las actividades combinan aprendizaje práctico, acompañamiento universitario y contacto con distintas disciplinas.                                                                                                                                          |
 
+## Respaldo institucional
+
+| Campo | Valor |
+| --- | --- |
+| Diseño | Blanco |
+| Título | Respaldo institucional |
+| Texto inicial | El programa cuenta con el respaldo institucional de los |
+| Texto destacado | Decanatos de las Escuelas de Ciencias e Ingeniería |
+| Texto final | quienes aprueban la aplicación de los recursos institucionales al mismo. |
+
 ## Talleres
 
 | Campo   | Valor                                                                      |

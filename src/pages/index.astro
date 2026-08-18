@@ -10,6 +10,7 @@ const hero = fields(source, 'Presentación');
 const heroButtons = tableRows(source, 'Botones de presentación');
 const service = fields(source, 'Servicio social');
 const about = fields(source, 'Qué es PI-ENSA');
+const institutionalSupport = fields(source, 'Respaldo institucional');
 const workshops = fields(source, 'Talleres');
 const thematicAreas = tableRows(source, 'Áreas').map(([name, description]) => ({ name, description }));
 const offer = fields(source, 'Oferta destacada');
@@ -61,6 +62,17 @@ const noticeLink = noticeLinkIsExternal ? generalNotice.enlace : withBase(genera
       <div class="lead">
         <p>{about['párrafo 1']}</p>
         <p>{about['párrafo 2']}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class={sectionClass(institutionalSupport['diseño'], 'Blanco')}>
+    <div class="container">
+      <div class="card border-l-8 border-l-[var(--accent)]">
+        <h2 class="text-3xl font-extrabold md:text-4xl">{institutionalSupport['título']}</h2>
+        <p class="lead mt-5 max-w-4xl">
+          {institutionalSupport['texto inicial']} <strong><em>{institutionalSupport['texto destacado']}</em></strong> {institutionalSupport['texto final']}
+        </p>
       </div>
     </div>
   </section>

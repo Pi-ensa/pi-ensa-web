@@ -14,15 +14,32 @@ const page = fields(source, 'Página');
     <div class="container">
       {agendaSettings.showSchedule ? (
         <>
-          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {workshopAgenda.map((group) => (
-              <article class="card">
-                <p class="eyebrow">Grupo</p>
-                <h2 class="mt-2 text-2xl font-extrabold">{group.day}</h2>
-                {group.time && group.time.toLocaleLowerCase('es') !== 'por confirmar' && <p class="mt-2 font-semibold text-[var(--primary)]">{group.time}</p>}
-                <ol class="schedule-list">{group.sessions.map((session) => <li>{session}</li>)}</ol>
-              </article>
-            ))}
+          <p class="mb-8 max-w-5xl text-lg">
+            Todas las actividades de PI-ENSA de <strong>{agendaSettings.period}</strong> serán ofrecidas en modo <strong>{agendaSettings.modality}</strong> con una duración de <strong>{agendaSettings.duration}</strong>.
+          </p>
+          <div class="schedule-table-wrapper">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th scope="col">Taller</th>
+                  <th scope="col">Horario</th>
+                  <th scope="col">Salón</th>
+                  <th scope="col">Fechas de inicio y término</th>
+                  <th scope="col">Observaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {workshopAgenda.map((schedule) => (
+                  <tr>
+                    <th scope="row">{schedule.workshop}</th>
+                    <td>{schedule.time}</td>
+                    <td>{schedule.room}</td>
+                    <td>{schedule.dates}</td>
+                    <td>{schedule.notes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
           {agendaSettings.note && <p class="mt-8 text-sm text-[var(--muted)]">{agendaSettings.note}</p>}
         </>

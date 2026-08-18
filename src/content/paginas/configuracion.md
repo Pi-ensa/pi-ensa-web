@@ -11,7 +11,7 @@
 | Ruta base | /pi-ensa-web |
 | Correo | piensa.ciencia@udlap.mx |
 | Formulario estudiantes |  |
-| Formulario participantes |  |
+| Formulario participantes | https://docs.google.com/forms/d/e/1FAIpQLSdcd43ilo7K8JVRkfL_4IBcESgCfSUi-Q3jQFe5he9KxfxaFQ/closedform |
 
 ## Navegación
 
@@ -20,7 +20,7 @@
 | Inicio | / |
 | ¿Quiénes somos? | /programa/ |
 | Inscríbete | /talleres/ |
-| Agenda | /agenda/ |
+| Horarios | /agenda/ |
 | Servicio social | /servicio-social/ |
 | Impacto | /impacto/ |
 | Noticias | /noticias/ |

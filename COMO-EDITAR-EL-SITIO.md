@@ -11,7 +11,7 @@ Los archivos de las pestañas están en `src/content/paginas/`.
 | Inicio | `inicio.md` |
 | ¿Quiénes somos? | `quienes-somos.md` |
 | Inscríbete y oferta de talleres | `inscribete.md` |
-| Agenda | `agenda.md` |
+| Horarios | `agenda.md` |
 | Servicio social | `servicio-social.md` |
 | Impacto | `impacto.md` |
 | Noticias | `noticias.md` |
@@ -39,7 +39,7 @@ En las tablas de dos columnas, el nombre del dato está a la izquierda y el cont
 ```md
 | Campo | Valor |
 | --- | --- |
-| Título principal | Agenda de talleres |
+| Título principal | Horario de talleres |
 | Introducción | Consulta las fechas y horarios publicados para cada grupo. |
 ```
 
@@ -64,7 +64,7 @@ Los controles de publicación aceptan:
 
 Estos controles se encuentran en:
 
-- `Mostrar agenda`, dentro de `agenda.md`;
+- `Mostrar horarios`, dentro de `agenda.md`;
 - `Mostrar fechas`, dentro de `servicio-social.md`;
 - `Publicado`, en cada taller de `inscribete.md`;
 - `Mostrar`, en cada noticia de `noticias.md`;
@@ -120,13 +120,21 @@ Esto aplica a:
 
 - áreas de Inicio;
 - talleres;
-- fechas y horarios;
+- horarios de talleres;
 - fechas del servicio social;
 - indicadores de Impacto;
 - contenido de Impacto;
 - canales de Contacto;
 - preguntas frecuentes;
 - navegación.
+
+## Horarios de talleres
+
+Cada fila de la tabla `Horarios de talleres` en `agenda.md` genera un renglón con taller, horario, salón, fechas y observaciones. La columna `Publicado` acepta `Sí`, `Si` o `No` y no se muestra en el sitio. El encabezado colocado antes de la tabla se construye con los campos `Periodo`, `Modalidad` y `Duración` de la tabla `Publicación`.
+
+## Información de inscripción
+
+La explicación general, los requisitos y los pasos del registro se administran en `inscribete.md`. Las tablas `Requisitos de registro` y `Pasos del registro` permiten agregar, eliminar o reordenar elementos. En los pasos, `Texto destacado` muestra una frase en negritas y subrayada. `Botón` y `Enlace` son opcionales; si se escribe un botón sin enlace, se utiliza el formulario general de participantes configurado para el sitio.
 
 ## Pasos del servicio social
 

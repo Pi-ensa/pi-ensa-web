@@ -3,11 +3,17 @@ import source from '../content/paginas/inscribete.md?raw';
 import PageHero from '../components/common/PageHero.astro';
 import { SITE } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { fields } from '../utils/markdown-data';
+import { fields, tableRows } from '../utils/markdown-data';
 import { registrationBanner, workshopOffer } from '../utils/workshop-offer';
 import { withBase } from '../utils/paths';
 
 const page = fields(source, 'Página');
+const registrationInformation = fields(source, 'Información de inscripción');
+const registrationRequirements = tableRows(source, 'Requisitos de registro').filter(([number, requirement]) => number && requirement);
+const registrationSteps = tableRows(source, 'Pasos del registro')
+  .filter((row) => row.length >= 5)
+  .map(([step, highlight, description, button, link]) => ({ step, highlight, description, button, link }))
+  .filter((step) => step.step && step.description);
 const participants = fields(source, 'Participantes');
 const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
 ---
@@ -24,6 +30,44 @@ const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?sub
           <p class="rounded-2xl bg-white/10 p-4"><strong>Inscripciones extemporáneas:</strong><br />{registrationBanner.lateRegistration}</p>
         </div>
       </aside>
+
+      <section class="mt-12" aria-labelledby="registration-information">
+        <h2 id="registration-information" class="text-3xl font-extrabold md:text-4xl">{registrationInformation['título']}</h2>
+        <p class="lead mt-5">{registrationInformation['introducción']}</p>
+
+        <h3 class="mt-10 text-2xl font-bold">{registrationInformation['título requisitos']}</h3>
+        <ol class="mt-5 grid gap-4">
+          {registrationRequirements.map(([number, requirement]) => (
+            <li class="card flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--primary)] font-extrabold text-white">{number}</span>
+              <p>{requirement}</p>
+            </li>
+          ))}
+        </ol>
+
+        <h3 class="mt-12 text-2xl font-bold">{registrationInformation['título pasos']}</h3>
+        <ol class="mt-5 grid gap-4">
+          {registrationSteps.map((step) => (
+            <li class="card flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent)] font-extrabold text-white">{step.step}</span>
+              <div>
+                <p>
+                  {step.highlight && <strong class="font-extrabold underline underline-offset-4">{step.highlight}: </strong>}
+                  {step.description}
+                </p>
+                {step.button && (
+                  <a
+                    class="button mt-5"
+                    href={step.link || registration}
+                    target={step.link?.startsWith('http') || SITE.participantFormUrl ? '_blank' : undefined}
+                    rel={step.link?.startsWith('http') || SITE.participantFormUrl ? 'noopener noreferrer' : undefined}
+                  >{step.button}</a>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
       <article class="card card-link mt-8 flex flex-col">
         <p class="eyebrow">{participants.etiqueta}</p>

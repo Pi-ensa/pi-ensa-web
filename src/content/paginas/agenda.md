@@ -1,30 +1,42 @@
-# Agenda
+# Horarios
 
 ## Página
 
 | Campo                 | Valor                                                      |
 | --------------------- | ---------------------------------------------------------- |
-| Título del navegador | Agenda PI-ENSA                                            |
-| Descripción SEO      | Consulta las fechas y horarios de los talleres PI-ENSA.    |
-| Etiqueta              | FEBRERO-MAYO 2026                                         |
-| Título principal     | Agenda de talleres                                         |
-| Introducción         | Consulta las fechas y horarios publicados para cada grupo. |
+| Título del navegador | Horarios PI-ENSA                                         |
+| Descripción SEO      | Consulta los horarios, salones y fechas de los talleres PI-ENSA. |
+| Etiqueta              | PRIMAVERA 2026                                           |
+| Título principal     | Horario de talleres                                       |
+| Introducción         | Consulta los horarios, salones, fechas y observaciones de cada taller. |
 
 ## Publicación
 
-| Campo               | Valor                                                                                      |
-| ------------------- | ------------------------------------------------------------------------------------------ |
-| Mostrar agenda      | Si                                                                                         |
-| Mensaje alternativo | Periodo concluido.                                                                         |
-| Nota                | El calendario contempló pausas por ExpoUDLAP, Semana Santa, Pascua y días sin actividad. |
+| Campo | Valor |
+| --- | --- |
+| Mostrar horarios | Si |
+| Mensaje alternativo | Periodo concluido. |
+| Periodo | Primavera 2026 |
+| Modalidad | presencial |
+| Duración | DOS horas a la semana en un mismo día |
+| Nota | Los horarios y salones están sujetos a disponibilidad institucional. |
 
-## Fechas y horarios
+## Horarios de talleres
 
-| Día       | Horario       | Fechas                                                                                                                                                        | Publicado |
-| ---------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| Lunes      | Por confirmar | Taller 1 · 16 feb; Taller 2 · 23 feb; Taller 3 · 2 mar; Taller 4 · 9 mar; Taller 5 · 23 mar; Taller 6 · 13 abr; Taller 7 · 20 abr; Taller 8 · 27 abr  | Sí       |
-| Martes     | Por confirmar | Taller 1 · 17 feb; Taller 2 · 24 feb; Taller 3 · 3 mar; Taller 4 · 10 mar; Taller 5 · 17 mar; Taller 6 · 24 mar; Taller 7 · 14 abr; Taller 8 · 21 abr | Sí       |
-| Miércoles | Por confirmar | Taller 1 · 18 feb; Taller 2 · 25 feb; Taller 3 · 4 mar; Taller 4 · 11 mar; Taller 5 · 18 mar; Taller 6 · 25 mar; Taller 7 · 15 abr; Taller 8 · 22 abr | Sí       |
-| Jueves     | Por confirmar | Taller 1 · 19 feb; Taller 2 · 26 feb; Taller 3 · 5 mar; Taller 4 · 12 mar; Taller 5 · 19 mar; Taller 6 · 26 mar; Taller 7 · 16 abr; Taller 8 · 23 abr | Sí       |
-| Viernes    | Por confirmar | Taller 1 · 20 feb; Taller 2 · 27 feb; Taller 3 · 13 mar; Taller 4 · 20 mar; Taller 5 · 27 mar; Taller 6 · 17 abr; Taller 7 · 24 abr; Taller 8 · 8 may | Sí       |
-| Sábado    | Por confirmar | Taller 1 · 21 feb; Taller 2 · 28 feb; Taller 3 · 14 mar; Taller 4 · 21 mar; Taller 5 · 28 mar; Taller 6 · 18 abr; Taller 7 · 25 abr; Taller 8 · 2 may | Sí       |
+| Taller | Horario | Salón | Fechas de inicio y término | Observaciones | Publicado |
+| --- | --- | --- | --- | --- | --- |
+| Biomédica | Lunes 18:00–20:00 | CN-112 | 16/02 a 20/04 | Edad: 15 a 18 años. Requiere traer zapatos cerrados y pantalones sin romper obligatorios. | Sí |
+| Ciencias, Química y Nanotecnología | Jueves 17:30–19:30 | CI-111 | 19/02 a 16/04 | Edad: 12 a 18 años. Requiere traer zapatos cerrados y pantalones sin romper obligatorios. | Sí |
+| Construye y diseña ingeniería | Jueves 16:00–18:00 | SL-308 | 19/02 a 16/04 | Edad: 14 a 18 años. | Sí |
+| De emprendedor a empresario | Miércoles 18:00–20:00 | IA-214 | 18/02 a 15/04 | Edad: 14 a 18 años. | Sí |
+| Dibujo por computadora | Miércoles 18:00–20:00 | CN-218 | 18/02 a 15/04 | Edad: 12 a 18 años. | Sí |
+| Diseño de contenido digital | Martes 17:00–19:00 | HU-223 | 17/02 a 14/04 | Edad: 10 a 16 años. | Sí |
+| Excel | Sábado 11:00–13:00 | CN-218 | 21/02 a 25/04 | Edad: 12 a 18 años. | Sí |
+| Física experimental | Lunes 17:00–19:00 | CN-119 | 16/02 a 20/04 | Edad: 12 a 18 años. | Sí |
+| Ingeniándotelas | Jueves 18:00–20:00 | IA-213 | 19/02 a 16/04 | Edad: 10 a 15 años. | Sí |
+| Inglés por computadora | Sábado 11:00–13:00 | CN-202 | 21/02 a 25/04 | Edad: 9 a 15 años. | Sí |
+| Inteligencia artificial | Lunes 17:30–19:30 | CN-218 | 16/02 a 20/04 | Para estudiantes de bachillerato o preparatoria. | Sí |
+| Introducción a la ingeniería | Sábado 9:00–11:00 | CN-237 | 21/02 a 25/04 | Edad: 12 a 18 años. | Sí |
+| Mathexplora | Miércoles 17:00–19:00 | IA-213 | 18/02 a 15/04 | Edad: 12 a 18 años. | Sí |
+| Programación | Lunes 18:00–20:00 | CN-101 | 16/02 a 20/04 | Edad: 13 a 17 años. | Sí |
+| Robótica | Viernes 18:00–20:00 | CN-112 | 20/02 a 24/04 | Edad: 11 a 18 años. Requiere traer zapatos cerrados y pantalones sin romper obligatorios. Puede requerir material adicional de bajo costo. | Sí |
