@@ -25,7 +25,7 @@
 
 | Tipo      | Etiqueta            | Título     | Texto del enlace        | Enlace                                                          | Mostrar |
 | --------- | ------------------- | ----------- | ----------------------- | --------------------------------------------------------------- | ------- |
-| Correo    | Correo electrónico | Escríbenos | piensa.ciencia@udlap.mx | mailto:piensa.ciencia@udlap.mx                                  | Sí     |
+| Correo    | Correo electrónico | Escríbenos |  | mailto:piensa.ciencia@udlap.mx                                  | Sí     |
 | Facebook  | Redes sociales      | Facebook    | Talleres PI-ensa UDLAP  | https://www.facebook.com/Talleres-PI-ensa-UDLAP-586629875153002 | Sí     |
 | Teléfono | Atención           | Teléfono   | Por definir             |                                                                 | No      |
 | Instagram | Redes sociales      | Instagram   | Por definir             |                                                                 | No      |

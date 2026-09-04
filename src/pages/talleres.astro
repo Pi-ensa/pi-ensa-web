@@ -4,7 +4,7 @@ import PageHero from '../components/common/PageHero.astro';
 import { SITE } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { fields, tableRows } from '../utils/markdown-data';
-import { registrationBanner, workshopOffer } from '../utils/workshop-offer';
+import { participantFormUrl, registrationBanner, workshopOffer } from '../utils/workshop-offer';
 import { withBase } from '../utils/paths';
 
 const page = fields(source, 'Página');
@@ -15,7 +15,7 @@ const registrationSteps = tableRows(source, 'Pasos del registro')
   .map(([step, highlight, description, button, link]) => ({ step, highlight, description, button, link }))
   .filter((step) => step.step && step.description);
 const participants = fields(source, 'Participantes');
-const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
+const registration = participantFormUrl || `mailto:${SITE.contactEmail}?subject=Inscripción a talleres PI-ENSA`;
 ---
 
 <BaseLayout title={page['título del navegador']} description={page['descripción seo']}>
@@ -59,8 +59,8 @@ const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?sub
                   <a
                     class="button mt-5"
                     href={step.link || registration}
-                    target={step.link?.startsWith('http') || SITE.participantFormUrl ? '_blank' : undefined}
-                    rel={step.link?.startsWith('http') || SITE.participantFormUrl ? 'noopener noreferrer' : undefined}
+                    target={step.link?.startsWith('http') || participantFormUrl ? '_blank' : undefined}
+                    rel={step.link?.startsWith('http') || participantFormUrl ? 'noopener noreferrer' : undefined}
                   >{step.button}</a>
                 )}
               </div>
@@ -76,11 +76,11 @@ const registration = SITE.participantFormUrl || `mailto:${SITE.contactEmail}?sub
         <a
           class="button mt-6"
           href={registration}
-          target={SITE.participantFormUrl ? '_blank' : undefined}
-          rel={SITE.participantFormUrl ? 'noopener noreferrer' : undefined}
+          target={participantFormUrl ? '_blank' : undefined}
+          rel={participantFormUrl ? 'noopener noreferrer' : undefined}
         >{participants['botón']}</a>
       </article>
-      {!SITE.participantFormUrl && <p class="mt-4 text-center text-sm text-[var(--muted)]">{participants['nota sin formulario']}</p>}
+      {!participantFormUrl && <p class="mt-4 text-center text-sm text-[var(--muted)]">{participants['nota sin formulario']}</p>}
 
       {workshopOffer.length > 0 && (
         <section class="mt-14" aria-labelledby="current-offer">

@@ -2,14 +2,11 @@
 import source from '../content/paginas/contacto.md?raw';
 import PageHero from '../components/common/PageHero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { fields, isEnabled, tableRows } from '../utils/markdown-data';
+import { fields, tableRows } from '../utils/markdown-data';
+import { visibleContactChannels as channels } from '../utils/contact-channels';
 
 const page = fields(source, 'Página');
 const questions = tableRows(source, 'Preguntas frecuentes').filter(([question, answer]) => question && answer);
-const channels = tableRows(source, 'Canales de comunicación')
-  .filter((row) => row.length >= 6)
-  .map(([type, label, title, linkText, link, show]) => ({ type, label, title, linkText, link, show }))
-  .filter((channel) => channel.title && channel.link && isEnabled(channel.show));
 const opensNewTab = (link = '') => /^https?:\/\//i.test(link);
 ---
 

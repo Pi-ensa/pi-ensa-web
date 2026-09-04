@@ -36,10 +36,26 @@ class Gallery:
         return ROOT / "public" / "fotos_publicables" / self.folder
 
 
-GALLERIES = (
-    Gallery("graduacion", "Graduación Otoño 2026"),
-    Gallery("talleres_periodo", "Talleres Primavera 2026"),
-)
+GALLERY_FOLDERS = ("graduacion", "talleres_periodo")
+
+
+def configured_galleries(source: str) -> tuple[Gallery, ...]:
+    section = source.split("## Noticias publicadas", 1)[1].split("\n## ", 1)[0]
+    rows = [line.strip() for line in section.splitlines() if line.strip().startswith("|")]
+    titles: dict[str, str] = {}
+    for line in rows[2:]:
+        cells = [cell.strip().replace(r"\|", "|") for cell in re.split(r"(?<!\\)\|", line.strip("|"))]
+        if len(cells) < 7 or not cells[6]:
+            continue
+        title, folder = cells[1], cells[6]
+        if folder not in GALLERY_FOLDERS:
+            raise ValueError(f"Galería desconocida: {folder}")
+        if folder in titles:
+            raise ValueError(f"La galería {folder} está asignada a más de una noticia.")
+        if not title:
+            raise ValueError(f"La noticia de {folder} necesita un título.")
+        titles[folder] = title
+    return tuple(Gallery(folder, titles[folder]) for folder in GALLERY_FOLDERS if folder in titles)
 
 
 def natural_key(path: Path) -> list[object]:
@@ -105,11 +121,11 @@ def update_gallery_table(outputs: dict[Gallery, list[Path]]) -> None:
     )
 
     rows: list[str] = []
-    for gallery in GALLERIES:
-        for index, image in enumerate(outputs[gallery], start=1):
+    for gallery, images in outputs.items():
+        for index, image in enumerate(images, start=1):
             public_path = f"/fotos_publicables/{gallery.folder}/{image.name}"
-            alt = f"Fotografía {index} de {gallery.news_title}."
-            rows.append(f"| {gallery.news_title} | {public_path} | {alt} |")
+            alt = f"Fotografía {index} de {gallery.news_title}.".replace("|", r"\|")
+            rows.append(f"| {gallery.folder} | {public_path} | {alt} |")
 
     updated = lines[: separator_index + 1] + rows
     if section_end < len(lines):
@@ -119,7 +135,11 @@ def update_gallery_table(outputs: dict[Gallery, list[Path]]) -> None:
 
 def main() -> None:
     outputs: dict[Gallery, list[Path]] = {}
-    for gallery in GALLERIES:
+    galleries = configured_galleries(NEWS_FILE.read_text(encoding="utf-8"))
+    if not galleries:
+        print("No hay galerías asignadas en Noticias publicadas. No se modificó ningún archivo.")
+        return
+    for gallery in galleries:
         print(f"Procesando {gallery.folder}...")
         outputs[gallery] = prepare_gallery(gallery)
         print(f"  {len(outputs[gallery])} fotografía(s) preparada(s).")

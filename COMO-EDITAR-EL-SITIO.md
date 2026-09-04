@@ -11,13 +11,13 @@ Los archivos de las pestañas están en `src/content/paginas/`.
 | Inicio | `inicio.md` |
 | ¿Quiénes somos? | `quienes-somos.md` |
 | Inscríbete y oferta de talleres | `inscribete.md` |
-| Horarios | `agenda.md` |
+| Horarios | `horarios.md` |
 | Servicio social | `servicio-social.md` |
 | Impacto | `impacto.md` |
 | Noticias | `noticias.md` |
 | Contacto y preguntas frecuentes | `contacto.md` |
 | Aviso emergente del Inicio | `aviso-general.md` |
-| Menú, correo, redes y pie de página | `configuracion.md` |
+| Menú, descripción general, URL y textos del pie de página | `configuracion.md` |
 
 La lista principal de noticias se administra en `noticias.md`. Los artículos internos con contenido extenso se encuentran en `src/content/news/`.
 
@@ -64,7 +64,7 @@ Los controles de publicación aceptan:
 
 Estos controles se encuentran en:
 
-- `Mostrar horarios`, dentro de `agenda.md`;
+- `Mostrar horarios`, dentro de `horarios.md`;
 - `Mostrar fechas`, dentro de `servicio-social.md`;
 - `Publicado`, en cada taller de `inscribete.md`;
 - `Mostrar`, en cada noticia de `noticias.md`;
@@ -74,7 +74,9 @@ Estos controles se encuentran en:
 
 Cada fila de la tabla `Noticias publicadas` en `noticias.md` genera una tarjeta. El campo `Enlace` acepta una ruta interna, por ejemplo `/agenda/`, o una dirección externa completa. El campo `Popup` se deja vacío cuando la noticia no necesita una ventana emergente; para una galería se escribe `Galería`, que será el texto del botón. El campo `Mostrar` acepta `Sí`, `Si` o `No`.
 
-Las galerías de `Graduación Otoño 2026` y `Talleres Primavera 2026` se preparan automáticamente. Las fotografías originales se colocan en:
+La columna `Galería` vincula una noticia con la carpeta `graduacion` o `talleres_periodo`; se deja vacía en noticias sin fotografías. Cada carpeta se asigna a una sola noticia. El título de la noticia se puede cambiar libremente desde la tabla, sin editar Python ni cambiar la carpeta.
+
+Las fotografías originales se colocan en:
 
 - `fotos_originales/graduacion/`;
 - `fotos_originales/talleres_periodo/`.
@@ -85,11 +87,11 @@ Después se ejecuta:
 python scripts/preparar_galerias.py
 ```
 
-El script corrige la orientación, reduce las dimensiones, convierte las imágenes a WebP, las renombra como `001.webp`, `002.webp` y sucesivamente, reemplaza las carpetas publicables y actualiza la tabla `Galerías de noticias`. Los resultados se guardan en `public/fotos_publicables/graduacion/` y `public/fotos_publicables/talleres_periodo/`. Las fotografías originales no se envían a GitHub.
+El script corrige la orientación, reduce las dimensiones, convierte las imágenes a WebP, las renombra como `001.webp`, `002.webp` y sucesivamente, reemplaza las fotografías publicables de las galerías asignadas y actualiza la tabla `Galerías de noticias`. Esa tabla se genera automáticamente: no es necesario editarla. Los resultados se guardan en `public/fotos_publicables/graduacion/` y `public/fotos_publicables/talleres_periodo/`. Las fotografías originales no se envían a GitHub; las publicables sí. El script no cambia el campo `Mostrar` de las noticias.
 
 Si falta la biblioteca de imágenes, se instala una sola vez con `python -m pip install -r requirements-galerias.txt`.
 
-Para retirar por completo las fotografías originales y publicables de ambas galerías se ejecuta `python scripts/elminar_galeria_historico.py`. El script solicita escribir `ELIMINAR`, conserva las carpetas y sus archivos `.gitkeep`, y vacía automáticamente la tabla `Galerías de noticias`.
+Para retirar por completo las fotografías originales y publicables de ambas galerías se ejecuta `python scripts/elminar_galeria_historico.py`. El script solicita escribir `ELIMINAR`, conserva las carpetas y sus archivos `.gitkeep`, y vacía automáticamente la tabla `Galerías de noticias`. Es una eliminación local definitiva de los originales: guarda una copia si necesitas conservarlos. No borra fotografías de commits anteriores ni libera su espacio en el historial de Git.
 
 ## Aviso general del Inicio
 
@@ -98,6 +100,8 @@ El archivo `aviso-general.md` controla la ventana que puede aparecer al abrir In
 ## Preguntas y canales de contacto
 
 Las preguntas frecuentes y sus respuestas se administran como filas dentro de `contacto.md`. En la tabla `Canales de comunicación`, cada canal tiene su propio enlace y un campo `Mostrar`. Correo y Facebook están publicados; teléfono, Instagram, LinkedIn y YouTube pueden prepararse con anticipación y activarse cambiando `No` por `Sí` cuando exista un enlace oficial.
+
+El correo y la dirección de Facebook del pie de página se toman de esta misma tabla. No es necesario duplicarlos en `configuracion.md`. Si `Texto del enlace` está vacío, se muestra la dirección del canal sin el prefijo `mailto:` o `tel:`. El correo también se utiliza como destino alternativo cuando no hay formulario de inscripción; ocultar su tarjeta no elimina esa dirección de contacto del sitio.
 
 ## Cambiar el fondo de una sección
 
@@ -116,6 +120,8 @@ Debe usarse exactamente uno de esos valores. Los colores, espacios, tipografías
 
 Las tarjetas se administran como filas. Para agregar una, se copia una fila completa y se modifican sus celdas. Para quitarla, se elimina la fila. El orden de las filas es el orden que se muestra en la página.
 
+Esto no cambia el orden de las secciones completas: mover una tabla dentro del Markdown, o a otro archivo, no mueve su bloque en el sitio. La posición de los bloques se define en las plantillas de `src/pages/`.
+
 Esto aplica a:
 
 - áreas de Inicio;
@@ -130,11 +136,11 @@ Esto aplica a:
 
 ## Horarios de talleres
 
-Cada fila de la tabla `Horarios de talleres` en `agenda.md` genera un renglón con taller, horario, salón, fechas y observaciones. La columna `Publicado` acepta `Sí`, `Si` o `No` y no se muestra en el sitio. El encabezado colocado antes de la tabla se construye con los campos `Periodo`, `Modalidad` y `Duración` de la tabla `Publicación`.
+Cada fila de la tabla `Horarios de talleres` en `horarios.md` genera un renglón con taller, horario, salón, fechas y observaciones. La columna `Publicado` acepta `Sí`, `Si` o `No` y no se muestra en el sitio. El encabezado colocado antes de la tabla se construye con los campos `Periodo`, `Modalidad` y `Duración` de la tabla `Publicación`. La dirección pública continúa siendo `/agenda/` para conservar los enlaces existentes.
 
 ## Información de inscripción
 
-La explicación general, los requisitos y los pasos del registro se administran en `inscribete.md`. Las tablas `Requisitos de registro` y `Pasos del registro` permiten agregar, eliminar o reordenar elementos. En los pasos, `Texto destacado` muestra una frase en negritas y subrayada. `Botón` y `Enlace` son opcionales; si se escribe un botón sin enlace, se utiliza el formulario general de participantes configurado para el sitio.
+La explicación general, los requisitos y los pasos del registro se administran en `inscribete.md`. Las tablas `Requisitos de registro` y `Pasos del registro` permiten agregar, eliminar o reordenar elementos. En los pasos, `Texto destacado` muestra una frase en negritas y subrayada. `Botón` y `Enlace` son opcionales; si se escribe un botón sin enlace, se utiliza `Enlace del formulario` de la tabla `Información de inscripción` del mismo archivo.
 
 ## Pasos del servicio social
 
@@ -162,23 +168,20 @@ Las rutas escritas en Markdown comienzan con `/`. Por ejemplo:
 
 ```text
 /images/general/estudiantes-pi-ensa.png
-/documentos/carteles/robotica.pdf
+/documentos/carteles/nombre-del-cartel.pdf
 ```
 
 No deben utilizarse rutas de Windows como `C:\Users\...`.
 
 ## Formularios de inscripción
 
-Los enlaces a formularios se administran en `configuracion.md`:
+El formulario de niñas, niños y jóvenes se configura una sola vez en `inscribete.md`, campo `Enlace del formulario` de la tabla `Información de inscripción`. Alimenta tanto el botón inferior de inscripción como los pasos que tienen botón pero no enlace propio. Si está vacío, esos botones preparan un correo al equipo PI-ENSA.
 
-- `Formulario estudiantes`;
-- `Formulario participantes`.
+Los enlaces de postulación de estudiantes UDLAP se editan en las filas correspondientes de los calendarios de `servicio-social.md`.
 
-Si `Formulario participantes` está vacío, el botón de inscripción prepara un correo al equipo PI-ENSA. Si contiene una dirección web, el botón abre ese formulario.
+## Artículos extensos de noticias (opcional)
 
-## Crear o editar una noticia
-
-Cada noticia es un archivo dentro de `src/content/news/`. La parte inicial contiene sus datos:
+Para una noticia breve basta con la tabla `Noticias publicadas` de `noticias.md`. Sólo cuando necesita una página propia con contenido extenso se crea un archivo dentro de `src/content/news/`. La parte inicial contiene sus datos:
 
 ```md
 ---
@@ -192,6 +195,8 @@ draft: false
 ```
 
 Después de la segunda línea `---` se escribe el contenido normal de la noticia con Markdown.
+
+El nombre del archivo determina su dirección: `nombre.md` genera `/noticias/nombre/`. Esa dirección se coloca en el campo `Enlace` de la tarjeta. `draft: true` impide generar el artículo; `draft: false` lo publica. El campo `Mostrar` de la tabla sólo controla la tarjeta, no la existencia del artículo. Ocultar una tarjeta no retira una página que ya tiene enlace propio.
 
 ## Editar desde GitHub
 

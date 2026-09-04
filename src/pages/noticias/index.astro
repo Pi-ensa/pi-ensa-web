@@ -8,7 +8,7 @@ import { withBase } from '../../utils/paths';
 const page = fields(source, 'Página');
 const entries = tableRows(source, 'Noticias publicadas')
   .filter((row) => row.length >= 6)
-  .map(([date, title, description, link, popup, show]) => ({ date, title, description, link, popup, show }))
+  .map(([date, title, description, link, popup, show, gallery]) => ({ date, title, description, link, popup, show, gallery }))
   .filter((entry) => entry.title && isEnabled(entry.show));
 const galleryRows = tableRows(source, 'Galerías de noticias')
   .filter((row) => row.length >= 3)
@@ -25,7 +25,7 @@ const imageFor = (image = '') => isExternal(image) ? image : withBase(image);
     <div class="container grid gap-6 md:grid-cols-2">
       {entries.map((entry, index) => {
         const dialogId = `noticia-popup-${index + 1}`;
-        const gallery = galleryRows.filter((item) => item.news === entry.title);
+        const gallery = galleryRows.filter((item) => item.news === (entry.gallery || entry.title));
         return (
           <>
             <article class="card flex flex-col">

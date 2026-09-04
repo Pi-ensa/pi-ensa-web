@@ -3,7 +3,6 @@ import { fields, isEnabled, tableRows } from './markdown-data';
 
 export interface RegistrationBanner {
   workshopPeriod: string;
-  agendaPeriod: string;
   status: string;
   registrationDates: string;
   lateRegistration: string;
@@ -16,10 +15,10 @@ export interface WorkshopOffer {
 }
 
 const registration = fields(source, 'Fechas de inscripción');
+export const participantFormUrl = fields(source, 'Información de inscripción')['enlace del formulario'] || '';
 
 export const registrationBanner: RegistrationBanner = {
   workshopPeriod: registration['periodo de talleres'] || 'Periodo por confirmar',
-  agendaPeriod: registration['periodo de agenda'] || 'PERIODO POR CONFIRMAR',
   status: registration.estado || 'Estado por confirmar',
   registrationDates: registration.inscripciones || 'Fechas por confirmar',
   lateRegistration: registration['inscripciones extemporáneas'] || 'Fecha por confirmar',

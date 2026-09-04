@@ -1,4 +1,4 @@
-import source from '../content/paginas/agenda.md?raw';
+import source from '../content/paginas/horarios.md?raw';
 import { fields, isEnabled, tableRows } from './markdown-data';
 
 export interface WorkshopSchedule {
@@ -11,7 +11,7 @@ export interface WorkshopSchedule {
 
 const settings = fields(source, 'Publicación');
 
-export const agendaSettings = {
+export const scheduleSettings = {
   showSchedule: isEnabled(settings['mostrar horarios']),
   alternateMessage: settings['mensaje alternativo'] || 'Periodo concluido.',
   period: settings.periodo || 'Periodo por confirmar',
@@ -20,7 +20,7 @@ export const agendaSettings = {
   note: settings.nota || '',
 };
 
-export const workshopAgenda: WorkshopSchedule[] = tableRows(source, 'Horarios de talleres')
+export const workshopSchedule: WorkshopSchedule[] = tableRows(source, 'Horarios de talleres')
   .filter((cells) => cells.length >= 6)
   .filter(([, , , , , published]) => isEnabled(published))
   .map(([workshop, time, room, dates, notes]) => ({
