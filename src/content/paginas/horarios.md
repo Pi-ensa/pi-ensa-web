@@ -27,7 +27,7 @@
 | --- | --- | --- | --- | --- | --- |
 | Biomédica | Lunes 18:00–20:00 | CN-112 | 16/02 a 20/04 | Edad: 15 a 18 años. Requiere traer zapatos cerrados y pantalones sin romper obligatorios. | Sí |
 | Ciencias, Química y Nanotecnología | Jueves 17:30–19:30 | CI-111 | 19/02 a 16/04 | Edad: 12 a 18 años. Requiere traer zapatos cerrados y pantalones sin romper obligatorios. | Sí |
-| Construye y diseña ingeniería | Jueves 16:00–18:00 | SL-308 | 19/02 a 16/04 | Edad: 14 a 18 años. | Sí |
+| Construye y diseña ingeniería | Jueves 16:00–18:00 | SL-308 lsdkjkjgEdad: 14 a 18 años. | Sí |
 | De emprendedor a empresario | Miércoles 18:00–20:00 | IA-214 | 18/02 a 15/04 | Edad: 14 a 18 años. | Sí |
 | Dibujo por computadora | Miércoles 18:00–20:00 | CN-218 | 18/02 a 15/04 | Edad: 12 a 18 años. | Sí |
 | Diseño de contenido digital | Martes 17:00–19:00 | HU-223 | 17/02 a 14/04 | Edad: 10 a 16 años. | Sí |
