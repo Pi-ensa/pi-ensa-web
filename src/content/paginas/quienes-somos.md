@@ -31,7 +31,7 @@
 | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2014 | En julio de 2014, la Dra. Marissa Yañez visitó la UDLAP y después de compartir inquietudes y experiencias con profesores de la Escuela de Ingeniería, recibió el respaldo necesario para ofrecer un programa piloto con los mismos objetivos que hoy posee la iniciativa PI-ensa. |
 | 2015 | Inicia PI-ENSA.                                                                                                                                                                                                                                                                        |
-| 20XX | Hola mundo!                                                                                                                                                                                                                                                                           |
+| 20XX | ¡Hola mundo!                                                                                                                                                                                                                                                                           |
 | 20XX | Información pendiente por definir.                                                                                                                                                                                                                                                    |
 
 ## Coordinación académica
