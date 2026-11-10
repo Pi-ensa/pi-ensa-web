@@ -58,26 +58,44 @@
 
 ## Talleres
 
-| Taller               | Descripción breve   | Cartel PDF                         | Publicado |
+
+
+| Taller               | Día  | Horario                        | Salón |
 | -------------------- | -------------------- | ---------------------------------- | --------- |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre dfel taller] | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre dfel taller] | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | Si        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
-| [Nombre del taller]  | [Descripción breve] | /documentos/carteles/[archivo].pdf | No        |
+| Biomédica | Martes |	18:00 - 20:00 |	CN-112  |
+| Ciencias, química y nano | Martes	| 17:00 - 19:00	| CI-105       |
+| Inglés por computadora | Lunes | 18:00 - 20:00 | CN-218  |
+| Dibujo por computadora  | Miércoles | 18:00 - 20:00 | CN 218       |
+| Programación | Viernes | 17:00 - 19:00 | CN-218  |
+| Diseño de contenido digital	| Sábado | 10:00 - 12:00 | CN-218|
+| Excel |	Viernes |	18:00 - 20:00 |	HU-223  |
+| Construye y diseña ingeniería |	Viernes |	17:00 - 19:00 |	IA-120  |
+|Física experimental |	Viernes |	17:30 - 19:30 |	CN-119    |
+| Robótica |	Martes | 17:00 - 19:00 |	CN-113    |
+| Math Explora |	Miércoles |	18:00 - 20:00 |	CN-122  |
+| De emprendedor a empresario |	Viernes |	17:00 - 19:00 |	CN-124  |
+| La ciencia del arte |	Jueves |	18:30 - 20:30 |	CS-120   |
+| Inteligencia artificial |	Viernes |	17:00 - 19:00 |	CS-120   |
+| Primeros auxilios |	Jueves |	18:30 - 20:30 |	CS-118     |
+| Introducción a la ingeniería |	Martes |	17:30 - 19:30 |	HU-326 |
+| Ingeniándotelas |	Miércoles |	17:40 - 19:40 |	HU-213    |
+
+
+Biomédica.png
+Construye_y_disena.png
+CQN.png
+De_emprendedor_a_empresario.png
+Dibujo_por_computadora.pdf
+Diseno_de_contenido_digital.pdf
+Excel.png
+Fisica.pdf
+IA.png
+Ingeniandotelas.png
+Ingles_por_computadora.pdf
+Intro_a_la_Ingenieria.jpg
+La_ciencia_delarte.pdf
+Math_explora.pdf
+Primeros_auxilios.pdf
+Programacion.pdf
+robotica.png
+
